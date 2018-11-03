@@ -1,0 +1,13 @@
+﻿Installing the DB:
+MS SQL 2014: https://www.microsoft.com/en-us/download/details.aspx?id=42299
+Management studio 2017: https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017 
+  https://stackoverflow.com/questions/9945409/how-do-i-fix-the-error-named-pipes-provider-error-40-could-not-open-a-connec
+  https://stackoverflow.com/questions/34430550/a-connection-was-successfully-established-with-the-server-but-then-an-error-occ
+
+Visual Studio C# to Typescript:
+  https://marketplace.visualstudio.com/items?itemName=frhagn.Typewriter
+
+  Automatically generates typescript classes from C# objects.
+
+DB mapping - refresh the Models classes from the database:
+PM> Scaffold-DbContext "Data Source=BENEDEK-PC\SQLEXPRESS;Initial Catalog=NewsPortal;Integrated Security=False;User Id=NewsPortalUser;Password=NewsPortalUser123;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Context "NewsPortalDBContext" -DataAnnotations -Force
