@@ -54,6 +54,9 @@
     <None Update="Models\TypescriptModels\Error.cshtml.ts">
       <CustomToolNamespace>Pages\Error.cshtml.cs</CustomToolNamespace>
     </None>
+    <None Update="Models\TypescriptModels\LoginModel.ts">
+      <CustomToolNamespace>Login\LoginModel.cs</CustomToolNamespace>
+    </None>
     <None Update="Models\TypescriptModels\NewsModel.ts">
       <CustomToolNamespace>Models\CSharpModels\NewsModel.cs</CustomToolNamespace>
     </None>
