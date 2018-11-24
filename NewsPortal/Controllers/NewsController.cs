@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsPortal.Models.CSharpModels;
 using NewsPortal.Models.DatabaseObjects;
@@ -17,20 +18,22 @@ namespace NewsPortal.Controllers
             return dal.GetAllNews();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteNews([FromRoute]int id)
-        {
-            await dal.DeleteNews(id);
-            return NoContent();
-        }
-
         [HttpGet("{id}")]
         public async Task<NewsModel> GetNews([FromRoute]int id)
         {
             return await dal.GetNews(id);
         }
 
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteNews([FromRoute]int id)
+        {
+            await dal.DeleteNews(id);
+            return NoContent();
+        }
+
         [HttpPost("")]
+        [Authorize]
         public async Task<IActionResult> CreateNews([FromBody]NewsModel model)
         {
             var createdNews = await dal.CreateNews(model);
@@ -38,6 +41,7 @@ namespace NewsPortal.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> UpdateNews([FromRoute]int id, [FromBody]NewsModel model)
         {
             await dal.UpdateNews(id, model);

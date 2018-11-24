@@ -1,6 +1,6 @@
 ﻿
 export class CategoryModel {
-
+    
 
     public Id: number = 0;
 

@@ -15,6 +15,7 @@ namespace NewsPortal.Models.DatabaseObjects
         {
         }
 
+        public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Writers> Writers { get; set; }
 
