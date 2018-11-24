@@ -3,17 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
-import { MatDialogModule } from '@angular/material/dialog';
-
 import {
     MatButtonModule,
     MatFormFieldModule,
@@ -29,8 +19,9 @@ import {
     MatSnackBarModule,
     MatSliderModule,
     MatSortModule,
-    MatTableModule
-
+    MatTableModule,
+    MatListModule,
+    MatDialogModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -52,6 +43,7 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { EditNewsComponent } from './edit-news/edit-news.component';
 import { AuthGuard } from '../services/auth-guard.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 export function tokenGetter() {
     return localStorage.getItem('jwt');
@@ -93,6 +85,7 @@ export function tokenGetter() {
         MatSnackBarModule,
         MatSliderModule,
         MatSortModule,
+        CKEditorModule,
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'counter', component: CounterComponent },
@@ -104,7 +97,12 @@ export function tokenGetter() {
             { path: 'news-editor', component: NewsEditorComponent },
             { path: 'login', component: Login },
             { path: 'edit-news', component: EditNewsComponent, canActivate: [AuthGuard] },
-        ])
+        ]),
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter
+            }
+        })
     ],
     providers: [NewsService, CategoryService, AuthGuard, JwtHelperService],
     bootstrap: [AppComponent],
