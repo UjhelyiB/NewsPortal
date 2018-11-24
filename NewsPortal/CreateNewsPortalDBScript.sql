@@ -1,22 +1,12 @@
-﻿/****** Login ******/
-USE [master]
+﻿USE [master]
 GO
-
-/* For security reasons the login is created disabled and with a random password. */
-/****** Object:  Login [NewsPortalUser]    Script Date: 2018.11.03. 22:04:56 ******/
-CREATE LOGIN [NewsPortalUser] WITH PASSWORD='NewsPortalUser123', DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=ON
-
-
-GO
-USE [master]
-GO
-/****** Object:  Database [NewsPortal]    Script Date: 2018.11.24. 15:57:19 ******/
+/****** Object:  Database [NewsPortal]    Script Date: 2018. 11. 24. 22:48:14 ******/
 CREATE DATABASE [NewsPortal]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'NewsPortal', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\NewsPortal.mdf' , SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+( NAME = N'NewsPortal', FILENAME = N'D:\temp\dori\NewsPortal.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
-( NAME = N'NewsPortal_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\NewsPortal_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+( NAME = N'NewsPortal_log', FILENAME = N'D:\temp\dori\NewsPortal_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 ALTER DATABASE [NewsPortal] SET COMPATIBILITY_LEVEL = 120
 GO
@@ -83,14 +73,34 @@ ALTER DATABASE [NewsPortal] SET TARGET_RECOVERY_TIME = 0 SECONDS
 GO
 ALTER DATABASE [NewsPortal] SET DELAYED_DURABILITY = DISABLED 
 GO
+ALTER DATABASE [NewsPortal] SET QUERY_STORE = OFF
+GO
 USE [NewsPortal]
 GO
-/****** Object:  User [NewsPortalUser]    Script Date: 2018.11.24. 15:57:19 ******/
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
+GO
+USE [NewsPortal]
+GO
+/****** Object:  User [NewsPortalUser]    Script Date: 2018. 11. 24. 22:48:14 ******/
 CREATE USER [NewsPortalUser] FOR LOGIN [NewsPortalUser] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [NewsPortalUser]
 GO
-/****** Object:  Table [dbo].[News]    Script Date: 2018.11.24. 15:57:19 ******/
+/****** Object:  Table [dbo].[News]    Script Date: 2018. 11. 24. 22:48:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -98,14 +108,18 @@ GO
 CREATE TABLE [dbo].[News](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Title] [ntext] NOT NULL,
-	[Context] [ntext] NOT NULL,
+	[Lead] [ntext] NOT NULL,
+	[Content] [ntext] NOT NULL,
+	[CreateDate] [datetime2](7) NOT NULL,
+	[ValidPeriod] [int] NOT NULL,
+	[Author] [int] NOT NULL,
  CONSTRAINT [PK_News] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Writers]    Script Date: 2018.11.24. 15:57:19 ******/
+/****** Object:  Table [dbo].[Writers]    Script Date: 2018. 11. 24. 22:48:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -122,14 +136,19 @@ CREATE TABLE [dbo].[Writers](
 ) ON [PRIMARY]
 GO
 SET IDENTITY_INSERT [dbo].[News] ON 
-
-INSERT [dbo].[News] ([Id], [Title], [Context]) VALUES (1, N'Test title', N'Test context')
+GO
+INSERT [dbo].[News] ([Id], [Title], [Lead], [Content], [CreateDate], [ValidPeriod], [Author]) VALUES (2, N'Test title', N'Test lead', N'Test content', CAST(N'2018-11-24T00:00:00.0000000' AS DateTime2), 14, 1)
+GO
 SET IDENTITY_INSERT [dbo].[News] OFF
+GO
 SET IDENTITY_INSERT [dbo].[Writers] ON 
-
+GO
 INSERT [dbo].[Writers] ([Id], [UserName], [PasswordHash], [Salt]) VALUES (1, N'test', N'B46E30CA854EA909651EC766A03A8E14B7258AD23DEB859A4C7F00EA43A77855', N'5005863751')
+GO
 INSERT [dbo].[Writers] ([Id], [UserName], [PasswordHash], [Salt]) VALUES (2, N'test2', N'6283EC42A6505836FDF6BDBBDB7728C275007D3118E855030E31F1932DB36AFB', N'7805537194')
+GO
 SET IDENTITY_INSERT [dbo].[Writers] OFF
+GO
 USE [master]
 GO
 ALTER DATABASE [NewsPortal] SET  READ_WRITE 

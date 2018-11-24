@@ -7,7 +7,15 @@ export class NewsModel {
 
     public Title: string = null;
 
-    public Context: string = null;
+    public Lead: string = null;
+
+    public Content: string = null;
+
+    public CreateDate: Date = null;
+
+    public ValidPeriod: number = 0;
+
+    public Author: number = 0;
 
     public Category: CategoryModel[] = [];
 }

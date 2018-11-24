@@ -9,13 +9,13 @@ namespace NewsPortal.Models.DatabaseObjects
     {
         public int Id { get; set; }
         [Required]
-        [Column(TypeName = "ntext")]
+        [StringLength(256)]
         public string UserName { get; set; }
         [Required]
-        [Column(TypeName = "ntext")]
+        [StringLength(256)]
         public string PasswordHash { get; set; }
         [Required]
-        [Column(TypeName = "ntext")]
+        [StringLength(256)]
         public string Salt { get; set; }
     }
 }

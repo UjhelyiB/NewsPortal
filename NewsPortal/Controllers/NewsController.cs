@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using NewsPortal.Models;
+using NewsPortal.Models.CSharpModels;
 using NewsPortal.Models.DatabaseObjects;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace NewsPortal.Controllers
 {
@@ -17,6 +15,39 @@ namespace NewsPortal.Controllers
         public IEnumerable<News> GetAllNews()
         {
             return dal.GetAllNews();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteNews([FromRoute]int id)
+        {
+            await dal.DeleteNews(id);
+            return NoContent();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<NewsModel> GetNews([FromRoute]int id)
+        {
+            return await dal.GetNews(id);
+        }
+
+        [HttpPost("")]
+        public async Task<IActionResult> CreateNews([FromBody]NewsModel model)
+        {
+            var createdNews = await dal.CreateNews(model);
+            return Created($"api/news/{createdNews.Id}", createdNews);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateNews([FromRoute]int id, [FromBody]NewsModel model)
+        {
+            await dal.UpdateNews(id, model);
+            return Accepted(model);
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<NewsListItemModel> search([FromQuery]string q)
+        {
+            return dal.SearchNews(q);
         }
 
         public class WeatherForecast

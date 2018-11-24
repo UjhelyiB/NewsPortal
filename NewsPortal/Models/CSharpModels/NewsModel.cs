@@ -11,7 +11,12 @@ namespace NewsPortal.Models.CSharpModels
 
         public string Title { get; set; }
 
-        public string Context { get; set; }
+        public string Lead { get; set; }
+
+        public string Content { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public int ValidPeriod { get; set; }
+        public int Author { get; set; }
 
         public CategoryModel[] Category { get; set; }
     }

@@ -13,6 +13,12 @@ namespace NewsPortal.Models.DatabaseObjects
         public string Title { get; set; }
         [Required]
         [Column(TypeName = "ntext")]
-        public string Context { get; set; }
+        public string Lead { get; set; }
+        [Required]
+        [Column(TypeName = "ntext")]
+        public string Content { get; set; }
+        public DateTime CreateDate { get; set; }
+        public int ValidPeriod { get; set; }
+        public int Author { get; set; }
     }
 }
