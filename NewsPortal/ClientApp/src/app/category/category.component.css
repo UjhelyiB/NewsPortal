@@ -1,0 +1,22 @@
+.category-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: #75709f;
+    border: 1px solid #75709f;
+    border-radius: 15px;
+    height: 35px;
+    margin-top: 15px;
+}
+
+    .category-container:hover {
+        background-color: #75709f;
+        color: #F9F9F9;
+        border-color: #F9F9F9;
+        cursor: pointer;
+    }
+
+.content-container {
+    margin-top: 20px;
+}

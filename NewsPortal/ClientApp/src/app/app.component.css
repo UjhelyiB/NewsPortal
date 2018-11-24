@@ -4,3 +4,12 @@
     padding-top: 50px;
   }
 }
+
+h1, h2, h3, div, span, p, a {
+    font-family: 'Roboto', sans-serif;
+}
+
+.body-content {
+    background-color: #F9F9F9;
+    min-height: 100vh;
+}

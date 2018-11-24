@@ -1,0 +1,22 @@
+table {
+    width: 80%;
+}
+
+table th, td {
+    text-align: center;
+}
+
+.btn-cell {
+    text-align: right;
+}
+
+.table-container {
+    margin-top: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-row button {
+    margin-right: 8px;
+}

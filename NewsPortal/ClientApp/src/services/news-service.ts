@@ -2,6 +2,8 @@ import { Injectable, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject } from "rxjs";
 import { NewsModel } from "../../../Models/TypescriptModels/NewsModel";
+import { News } from "./types";
+import { NEWS } from "./mock-news"
 
 @Injectable()
 export class NewsService {
@@ -24,5 +26,17 @@ export class NewsService {
 
     getNews() {
         return this._news.asObservable();
+    }
+
+    getMockNews(): News[] {
+        return NEWS;
+    }
+
+    getMockPost(id: number): News {
+        return NEWS[0];
+    }
+
+    getNewsByCategory(id: number): News[] {
+        return NEWS;
     }
 }

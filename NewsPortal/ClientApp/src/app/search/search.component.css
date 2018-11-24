@@ -1,0 +1,9 @@
+.search-container {
+    background-color: #3E4960;
+    height: 75px;
+    display:flex;justify-content:center;align-items:center;
+}
+
+.content-container {
+    background-color: white;
+}

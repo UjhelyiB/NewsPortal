@@ -1,0 +1,31 @@
+<div class="login-container">
+    <div style="width:45%">
+        <mat-card>
+            <mat-card-title>
+                Login
+            </mat-card-title>
+            <mat-card-content>
+                <div class="form-container">
+                    <mat-form-field>
+                        <input matInput
+                               type="text"
+                               name="email"
+                               placeholder="Add meg az email címed">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput
+                               placeholder="Add meg a jelszavad"
+                               name="password"
+                               [type]="hidePassword ? 'password' : 'text'">
+                        <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+                            {{hidePassword ? 'visibility' : 'visibility_off' }}
+                        </mat-icon>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="login-button" color="primary">Login</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.NEWS = [
+    {
+        id: 11,
+        title: 'This app lets you add an iPhone X Notch to any Android phone',
+        cover: 'TODO',
+        intro: 'Indonesian police have arrested a man over the murder of an elderly Japanese couple whose bodies were found burned beyond recognition on the holiday island of Bali.',
+        body: ['Lorem ipsum dolor sit amet, Etiam ut volutpat dolor. Mauris ut arcu cursus consectetur adipiscing elit. Integer volutpat sodales arcu et hendrerit. Nullam semper ac mauris non sagittis. Ut efficitur dui ac tortor volutpat semper.Donec mauris enim, iaculis eu congue facilisis, aliquam consequat orci. Curabitur facilisis nulla in lorem consequat.',
+            'Convallis mi interdum.In maximus iaculis mauris et scelerisque.Aliquam ante orci, lacinia eu elit non, porttitor ultricies erat.Aliquam tincidunt ultrices mi, vitae euismod nulla accumsan et.Donec sollicitudin lacus in vestibulum interdum.Duis purus quam, dignissim non tempus ut, maximus consectetur arcu.Vestibulum tincidunt tincidunt sodales.Nulla facilisi.',
+            'Upsum dolor sit amet, consectetur adipiscing elit. Integer volutpat sodales arcu et hendrerit. Nullam semper ac mauris non sagittis. Ut efficitur dui ac tortor volutpat semper. Donec mauris enim, iaculis eu congue facilisis, aliquam consequat orci. Curabitur facilisis nulla in lorem consequat.',
+            'Etiam ut volutpat dolor. Mauris ut arcu cursus, ultrici velit a, dictum magna. Integer non rhoncus lectus, It commodo luctus purus. Duis sed lorem ipsum. Mejor Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim sapien a orci aliquam, eleifend maximus nisi ultrices.',
+            'Sed et nisi in quam aliquet varius ut non mauris new. Etiam ut volutpat dolor. Mauris ut arcu cursus Vestibulum non iaculis urna, in eleifend eros. Vivamu elementum justo sed augue luctus suscipit. Phasellus pretium posuere elit ac laoreet. Donec placerat liber et erat lacinia congue. Maecenas interdum mi nec porta. Curabitur facilisis nulla in lorem consequat. Sed et nisi in quam aliquet varius ut non mauris new.'
+        ],
+        tags: 'everyday',
+        date: '2018.11.06',
+        author: 'DodoJoy',
+    },
+    {
+        id: 12,
+        title: 'Jake LaMotta, ‘Raging Bull’ in and Out of the Ring, Dies',
+        cover: 'TODO',
+        intro: 'Indonesian police have arrested a man over the murder of an elderly Japanese couple whose bodies were found burned beyond recognition on the holiday island of Bali.',
+        body: ['Lorem ipsum dolor sit amet, Etiam ut volutpat dolor. Mauris ut arcu cursus consectetur adipiscing elit. Integer volutpat sodales arcu et hendrerit. Nullam semper ac mauris non sagittis. Ut efficitur dui ac tortor volutpat semper.Donec mauris enim, iaculis eu congue facilisis, aliquam consequat orci. Curabitur facilisis nulla in lorem consequat.',
+            'Convallis mi interdum.In maximus iaculis mauris et scelerisque.Aliquam ante orci, lacinia eu elit non, porttitor ultricies erat.Aliquam tincidunt ultrices mi, vitae euismod nulla accumsan et.Donec sollicitudin lacus in vestibulum interdum.Duis purus quam, dignissim non tempus ut, maximus consectetur arcu.Vestibulum tincidunt tincidunt sodales.Nulla facilisi.',
+            'Upsum dolor sit amet, consectetur adipiscing elit. Integer volutpat sodales arcu et hendrerit. Nullam semper ac mauris non sagittis. Ut efficitur dui ac tortor volutpat semper. Donec mauris enim, iaculis eu congue facilisis, aliquam consequat orci. Curabitur facilisis nulla in lorem consequat.',
+            'Etiam ut volutpat dolor. Mauris ut arcu cursus, ultrici velit a, dictum magna. Integer non rhoncus lectus, It commodo luctus purus. Duis sed lorem ipsum. Mejor Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim sapien a orci aliquam, eleifend maximus nisi ultrices.',
+            'Sed et nisi in quam aliquet varius ut non mauris new. Etiam ut volutpat dolor. Mauris ut arcu cursus Vestibulum non iaculis urna, in eleifend eros. Vivamu elementum justo sed augue luctus suscipit. Phasellus pretium posuere elit ac laoreet. Donec placerat liber et erat lacinia congue. Maecenas interdum mi nec porta. Curabitur facilisis nulla in lorem consequat. Sed et nisi in quam aliquet varius ut non mauris new.'
+        ],
+        tags: 'everyday',
+        date: '2018.11.06',
+        author: 'DodoJoy',
+    },
+    {
+        id: 13,
+        title: 'How Do Families The Around the Worldes Spend Vacations?',
+        cover: 'TODO',
+        intro: 'Indonesian police have arrested a man over the murder of an elderly Japanese couple whose bodies were found burned beyond recognition on the holiday island of Bali.',
+        body: ['Lorem ipsum dolor sit amet, Etiam ut volutpat dolor. Mauris ut arcu cursus consectetur adipiscing elit. Integer volutpat sodales arcu et hendrerit. Nullam semper ac mauris non sagittis. Ut efficitur dui ac tortor volutpat semper.Donec mauris enim, iaculis eu congue facilisis, aliquam consequat orci. Curabitur facilisis nulla in lorem consequat.',
+            'Convallis mi interdum.In maximus iaculis mauris et scelerisque.Aliquam ante orci, lacinia eu elit non, porttitor ultricies erat.Aliquam tincidunt ultrices mi, vitae euismod nulla accumsan et.Donec sollicitudin lacus in vestibulum interdum.Duis purus quam, dignissim non tempus ut, maximus consectetur arcu.Vestibulum tincidunt tincidunt sodales.Nulla facilisi.',
+            'Upsum dolor sit amet, consectetur adipiscing elit. Integer volutpat sodales arcu et hendrerit. Nullam semper ac mauris non sagittis. Ut efficitur dui ac tortor volutpat semper. Donec mauris enim, iaculis eu congue facilisis, aliquam consequat orci. Curabitur facilisis nulla in lorem consequat.',
+            'Etiam ut volutpat dolor. Mauris ut arcu cursus, ultrici velit a, dictum magna. Integer non rhoncus lectus, It commodo luctus purus. Duis sed lorem ipsum. Mejor Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim sapien a orci aliquam, eleifend maximus nisi ultrices.',
+            'Sed et nisi in quam aliquet varius ut non mauris new. Etiam ut volutpat dolor. Mauris ut arcu cursus Vestibulum non iaculis urna, in eleifend eros. Vivamu elementum justo sed augue luctus suscipit. Phasellus pretium posuere elit ac laoreet. Donec placerat liber et erat lacinia congue. Maecenas interdum mi nec porta. Curabitur facilisis nulla in lorem consequat. Sed et nisi in quam aliquet varius ut non mauris new.'
+        ],
+        tags: 'everyday',
+        date: '2018.11.06',
+        author: 'DodoJoy',
+    },
+    {
+        id: 14,
+        title: 'The Ultimate Cheap Flights Finder is Here!',
+        cover: 'TODO',
+        intro: 'Indonesian police have arrested a man over the murder of an elderly Japanese couple whose bodies were found burned beyond recognition on the holiday island of Bali.',
+        body: ['Lorem ipsum dolor sit amet, Etiam ut volutpat dolor. Mauris ut arcu cursus consectetur adipiscing elit. Integer volutpat sodales arcu et hendrerit. Nullam semper ac mauris non sagittis. Ut efficitur dui ac tortor volutpat semper.Donec mauris enim, iaculis eu congue facilisis, aliquam consequat orci. Curabitur facilisis nulla in lorem consequat.',
+            'Convallis mi interdum.In maximus iaculis mauris et scelerisque.Aliquam ante orci, lacinia eu elit non, porttitor ultricies erat.Aliquam tincidunt ultrices mi, vitae euismod nulla accumsan et.Donec sollicitudin lacus in vestibulum interdum.Duis purus quam, dignissim non tempus ut, maximus consectetur arcu.Vestibulum tincidunt tincidunt sodales.Nulla facilisi.',
+            'Upsum dolor sit amet, consectetur adipiscing elit. Integer volutpat sodales arcu et hendrerit. Nullam semper ac mauris non sagittis. Ut efficitur dui ac tortor volutpat semper. Donec mauris enim, iaculis eu congue facilisis, aliquam consequat orci. Curabitur facilisis nulla in lorem consequat.',
+            'Etiam ut volutpat dolor. Mauris ut arcu cursus, ultrici velit a, dictum magna. Integer non rhoncus lectus, It commodo luctus purus. Duis sed lorem ipsum. Mejor Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim sapien a orci aliquam, eleifend maximus nisi ultrices.',
+            'Sed et nisi in quam aliquet varius ut non mauris new. Etiam ut volutpat dolor. Mauris ut arcu cursus Vestibulum non iaculis urna, in eleifend eros. Vivamu elementum justo sed augue luctus suscipit. Phasellus pretium posuere elit ac laoreet. Donec placerat liber et erat lacinia congue. Maecenas interdum mi nec porta. Curabitur facilisis nulla in lorem consequat. Sed et nisi in quam aliquet varius ut non mauris new.'
+        ],
+        tags: 'everyday',
+        date: '2018.11.06',
+        author: 'DodoJoy',
+    },
+    {
+        id: 15,
+        title: 'Best firm for a trip to the Tokyo Olympics in 2020?',
+        cover: 'TODO',
+        intro: 'Indonesian police have arrested a man over the murder of an elderly Japanese couple whose bodies were found burned beyond recognition on the holiday island of Bali.',
+        body: ['Lorem ipsum dolor sit amet, Etiam ut volutpat dolor. Mauris ut arcu cursus consectetur adipiscing elit. Integer volutpat sodales arcu et hendrerit. Nullam semper ac mauris non sagittis. Ut efficitur dui ac tortor volutpat semper.Donec mauris enim, iaculis eu congue facilisis, aliquam consequat orci. Curabitur facilisis nulla in lorem consequat.',
+            'Convallis mi interdum.In maximus iaculis mauris et scelerisque.Aliquam ante orci, lacinia eu elit non, porttitor ultricies erat.Aliquam tincidunt ultrices mi, vitae euismod nulla accumsan et.Donec sollicitudin lacus in vestibulum interdum.Duis purus quam, dignissim non tempus ut, maximus consectetur arcu.Vestibulum tincidunt tincidunt sodales.Nulla facilisi.',
+            'Upsum dolor sit amet, consectetur adipiscing elit. Integer volutpat sodales arcu et hendrerit. Nullam semper ac mauris non sagittis. Ut efficitur dui ac tortor volutpat semper. Donec mauris enim, iaculis eu congue facilisis, aliquam consequat orci. Curabitur facilisis nulla in lorem consequat.',
+            'Etiam ut volutpat dolor. Mauris ut arcu cursus, ultrici velit a, dictum magna. Integer non rhoncus lectus, It commodo luctus purus. Duis sed lorem ipsum. Mejor Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim sapien a orci aliquam, eleifend maximus nisi ultrices.',
+            'Sed et nisi in quam aliquet varius ut non mauris new. Etiam ut volutpat dolor. Mauris ut arcu cursus Vestibulum non iaculis urna, in eleifend eros. Vivamu elementum justo sed augue luctus suscipit. Phasellus pretium posuere elit ac laoreet. Donec placerat liber et erat lacinia congue. Maecenas interdum mi nec porta. Curabitur facilisis nulla in lorem consequat. Sed et nisi in quam aliquet varius ut non mauris new.'
+        ],
+        tags: 'everyday',
+        date: '2018.11.06',
+        author: 'DodoJoy',
+    },
+];
+//# sourceMappingURL=mock-news.js.map

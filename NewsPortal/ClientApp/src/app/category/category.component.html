@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="categories-container">
+            <h3>Categories</h3>
+            <mat-divider></mat-divider>
+            <div class="row">
+                <div class="col-md-3" *ngFor="let category of categories">
+                    <div class="category-container" (click)="loadCategory(category.id)">
+                        <span>{{category.title}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result-container">
+            <h3>Selected</h3>
+            <mat-divider></mat-divider>
+            <div *ngFor='let post of news'>
+                <app-news-section [post]="post"></app-news-section>
+            </div>
+        </div>
+    </div>
+</div>

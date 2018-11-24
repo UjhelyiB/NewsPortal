@@ -1,0 +1,21 @@
+<h2 i18n>Edit category</h2>
+<mat-dialog-content class="mat-typography">
+        <mat-form-field style="width: 100%">
+            <input matInput placeholder="Category title" [(ngModel)]="data.title">
+        </mat-form-field>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <button mat-raised-button
+            color="primary"
+            i18n
+            (click)="onCancel()">
+        Cancel
+    </button>
+    <button mat-raised-button
+            color="warn"
+            i18n
+            (click)="onOk()"
+            cdkFocusInitial>
+        Done
+    </button>
+</div>

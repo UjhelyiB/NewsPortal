@@ -24,11 +24,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\delete-dialog\delete-dialog.component.ts" />
+    <None Remove="ClientApp\src\app\edit-dialog\edit-dialog.component.ts" />
+    <None Remove="ClientApp\src\app\login\login.component.ts" />
+    <None Remove="ClientApp\src\app\news-post\news-post.component.ts" />
+    <None Remove="ClientApp\src\services\category.service.ts" />
+    <None Remove="ClientApp\src\services\mock-categories.ts" />
+    <None Remove="ClientApp\src\services\mock-news.ts" />
     <None Remove="ClientApp\src\services\news-service.ts" />
+    <None Remove="ClientApp\src\services\types.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\delete-dialog\delete-dialog.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\edit-dialog\edit-dialog.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\news-post\news-post.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\services\category.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\services\mock-categories.ts" />
+    <TypeScriptCompile Include="ClientApp\src\services\mock-news.ts" />
     <TypeScriptCompile Include="ClientApp\src\services\news-service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\services\types.ts" />
   </ItemGroup>
 
   <ItemGroup>
