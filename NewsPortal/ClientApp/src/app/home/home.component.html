@@ -1,1 +1,10 @@
-<h1>News portal</h1>
+<h1>Hírportál</h1>
+
+<a [routerLink]='["/login"]' *ngIf="!isLoggedIn()" matTooltip="Bejelentkezés - csak szerkesztőknek.">
+    <span class='glyphicon glyphicon-log-in'></span>
+</a>
+
+<a *ngIf="isLoggedIn()"  matTooltip="Kijelentkezés." style="cursor:pointer" (click)="logOut()">
+    <span class='glyphicon glyphicon-log-out'></span>
+</a>
+

@@ -1,31 +1,30 @@
 <div class="login-container">
     <div>
-        <mat-card>
+        johndoe<br/>
+        def@123
+        <mat-card style="margin-top:100%">
             <mat-card-title>
-                Login
+                Bejelentkezés
             </mat-card-title>
             <mat-card-content>
                 <div class="form-container">
                     <mat-form-field>
-                        <input matInput
-                               type="text"
-                               name="email"
-                               placeholder="Add meg az email címed">
+                        <input matInput type="text" name="email" placeholder="Add meg az email címed" [(ngModel)]="credentials.UserName">
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput
-                               placeholder="Add meg a jelszavad"
-                               name="password"
-                               [type]="hidePassword ? 'password' : 'text'">
-                        <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+                        <input matInput placeholder="Add meg a jelszavad" name="password" [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="credentials.Password">
+                        <mat-icon matSuffix (click)="hidePassword = !hidePassword" style="cursor:default">
                             {{hidePassword ? 'visibility' : 'visibility_off' }}
                         </mat-icon>
                     </mat-form-field>
                 </div>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button color="primary">Login</button>
+                <button mat-raised-button color="primary" (click)="login()">Bejelentkezés</button>
             </mat-card-actions>
         </mat-card>
+        <div *ngIf="invalidLogin" style="color:darkred">
+            Helytelen azonosító és/vagy jelszó!
+        </div>
     </div>
 </div>
