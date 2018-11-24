@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace NewsPortal.Models
+namespace NewsPortal.Models.DatabaseObjects
 {
     public partial class NewsPortalDBContext : DbContext
     {
@@ -16,6 +16,7 @@ namespace NewsPortal.Models
         }
 
         public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<Writers> Writers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

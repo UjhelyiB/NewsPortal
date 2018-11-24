@@ -32,4 +32,8 @@ export class AuthGuard implements CanActivate {
     logOut(): void {
         localStorage.removeItem("jwt");
     }
+
+    getUserName(): string {
+        return localStorage.getItem("userName");
+    }
 }

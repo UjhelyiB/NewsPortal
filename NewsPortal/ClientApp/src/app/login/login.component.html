@@ -1,7 +1,9 @@
 <div class="login-container">
     <div>
-        johndoe<br/>
-        def@123
+        test<br />
+        test123<br /><br />
+        test2<br />
+        password
         <mat-card style="margin-top:100%">
             <mat-card-title>
                 Bejelentkezés
@@ -9,7 +11,7 @@
             <mat-card-content>
                 <div class="form-container">
                     <mat-form-field>
-                        <input matInput type="text" name="email" placeholder="Add meg az email címed" [(ngModel)]="credentials.UserName">
+                        <input matInput type="text" name="email" placeholder="Add meg az azonosítódat" [(ngModel)]="credentials.UserName">
                     </mat-form-field>
                     <mat-form-field>
                         <input matInput placeholder="Add meg a jelszavad" name="password" [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="credentials.Password">

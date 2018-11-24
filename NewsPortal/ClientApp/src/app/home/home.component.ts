@@ -18,4 +18,8 @@ export class HomeComponent {
     logOut() {
         this.auth.logOut();
     }
+
+    getUserName() {
+        return this.auth.getUserName();
+    }
 }

@@ -1,4 +1,7 @@
 <h1>Hírportál</h1>
+<div *ngIf="isLoggedIn()">
+    Bejelentkezve mint: <b>{{getUserName()}}</b>
+</div>
 
 <a [routerLink]='["/login"]' *ngIf="!isLoggedIn()" matTooltip="Bejelentkezés - csak szerkesztőknek.">
     <span class='glyphicon glyphicon-log-in'></span>
