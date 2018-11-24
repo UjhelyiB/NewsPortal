@@ -5,14 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewsPortal.Models.DatabaseObjects
 {
-    public partial class News
+    public partial class Writers
     {
         public int Id { get; set; }
         [Required]
         [Column(TypeName = "ntext")]
-        public string Title { get; set; }
+        public string UserName { get; set; }
         [Required]
         [Column(TypeName = "ntext")]
-        public string Context { get; set; }
+        public string PasswordHash { get; set; }
+        [Required]
+        [Column(TypeName = "ntext")]
+        public string Salt { get; set; }
     }
 }

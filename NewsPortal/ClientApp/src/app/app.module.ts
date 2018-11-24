@@ -14,6 +14,25 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 
+import {
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatDividerModule,
+    MatTabsModule,
+    MatProgressBarModule,
+    MatTooltipModule,
+    MatIconModule,
+    MatCardModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatSliderModule,
+    MatSortModule,
+    MatTableModule
+
+} from '@angular/material';
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -30,6 +49,13 @@ import { Login } from './login/login.component';
 import { CategoryService } from '../services/category.service';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { EditNewsComponent } from './edit-news/edit-news.component';
+import { AuthGuard } from '../services/auth-guard.service';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+    return localStorage.getItem('jwt');
+}
 
 @NgModule({
     declarations: [
@@ -47,6 +73,7 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
         Login,
         DeleteDialogComponent,
         EditDialogComponent,
+        EditNewsComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -62,6 +89,10 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
         MatButtonModule,
         MatTableModule,
         MatDialogModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatSliderModule,
+        MatSortModule,
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'counter', component: CounterComponent },
@@ -72,9 +103,10 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
             { path: 'category-editor', component: CategoryEditorComponent },
             { path: 'news-editor', component: NewsEditorComponent },
             { path: 'login', component: Login },
+            { path: 'edit-news', component: EditNewsComponent, canActivate: [AuthGuard] },
         ])
     ],
-    providers: [NewsService, CategoryService],
+    providers: [NewsService, CategoryService, AuthGuard, JwtHelperService],
     bootstrap: [AppComponent],
     entryComponents: [
         EditDialogComponent,

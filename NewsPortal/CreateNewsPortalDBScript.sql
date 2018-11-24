@@ -5,11 +5,12 @@ GO
 /* For security reasons the login is created disabled and with a random password. */
 /****** Object:  Login [NewsPortalUser]    Script Date: 2018.11.03. 22:04:56 ******/
 CREATE LOGIN [NewsPortalUser] WITH PASSWORD='NewsPortalUser123', DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=ON
-GO
 
+
+GO
 USE [master]
 GO
-/****** Object:  Database [NewsPortal]    Script Date: 2018.11.03. 22:07:59 ******/
+/****** Object:  Database [NewsPortal]    Script Date: 2018.11.24. 15:57:19 ******/
 CREATE DATABASE [NewsPortal]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -84,12 +85,12 @@ ALTER DATABASE [NewsPortal] SET DELAYED_DURABILITY = DISABLED
 GO
 USE [NewsPortal]
 GO
-/****** Object:  User [NewsPortalUser]    Script Date: 2018.11.03. 22:07:59 ******/
+/****** Object:  User [NewsPortalUser]    Script Date: 2018.11.24. 15:57:19 ******/
 CREATE USER [NewsPortalUser] FOR LOGIN [NewsPortalUser] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [NewsPortalUser]
 GO
-/****** Object:  Table [dbo].[News]    Script Date: 2018.11.03. 22:07:59 ******/
+/****** Object:  Table [dbo].[News]    Script Date: 2018.11.24. 15:57:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -104,12 +105,31 @@ CREATE TABLE [dbo].[News](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
+/****** Object:  Table [dbo].[Writers]    Script Date: 2018.11.24. 15:57:19 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Writers](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [nvarchar](256) NOT NULL,
+	[PasswordHash] [nvarchar](256) NOT NULL,
+	[Salt] [nvarchar](256) NOT NULL,
+ CONSTRAINT [PK_Writers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 SET IDENTITY_INSERT [dbo].[News] ON 
-GO
+
 INSERT [dbo].[News] ([Id], [Title], [Context]) VALUES (1, N'Test title', N'Test context')
-GO
 SET IDENTITY_INSERT [dbo].[News] OFF
-GO
+SET IDENTITY_INSERT [dbo].[Writers] ON 
+
+INSERT [dbo].[Writers] ([Id], [UserName], [PasswordHash], [Salt]) VALUES (1, N'test', N'B46E30CA854EA909651EC766A03A8E14B7258AD23DEB859A4C7F00EA43A77855', N'5005863751')
+INSERT [dbo].[Writers] ([Id], [UserName], [PasswordHash], [Salt]) VALUES (2, N'test2', N'6283EC42A6505836FDF6BDBBDB7728C275007D3118E855030E31F1932DB36AFB', N'7805537194')
+SET IDENTITY_INSERT [dbo].[Writers] OFF
 USE [master]
 GO
 ALTER DATABASE [NewsPortal] SET  READ_WRITE 

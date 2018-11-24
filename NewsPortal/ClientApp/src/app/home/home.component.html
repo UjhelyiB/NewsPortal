@@ -1,4 +1,16 @@
-<h1>Dodo News</h1>
+<h1>Hírportál</h1>
+<div *ngIf="isLoggedIn()">
+    Bejelentkezve mint: <b>{{getUserName()}}</b>
+</div>
+
+<a [routerLink]='["/login"]' *ngIf="!isLoggedIn()" matTooltip="Bejelentkezés - csak szerkesztőknek.">
+    <span class='glyphicon glyphicon-log-in'></span>
+</a>
+
+<a *ngIf="isLoggedIn()"  matTooltip="Kijelentkezés." style="cursor:pointer" (click)="logOut()">
+    <span class='glyphicon glyphicon-log-out'></span>
+</a>
+
 <div style="width: 100%">
     <div class="col-md-2"></div>
     <div class="col-md-8">
