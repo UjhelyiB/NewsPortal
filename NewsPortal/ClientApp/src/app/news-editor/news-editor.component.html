@@ -10,14 +10,12 @@
 
         <mat-form-field>
             <mat-select placeholder="Kategóriák" multiple [(ngModel)]="model.categories">
-                <!--<mat-select-trigger>
-                    {{model.categories ? model.categories[0] : ''}}
-                    <span *ngIf="model.categories?.length > 1" class="additional-selection">
-                        (+{{model.categories.length - 1}} {{model.categories?.length === 2 ? 'other' : 'others'}})
-                    </span>
-                </mat-select-trigger>-->
                 <mat-option *ngFor="let category of categories" [value]="category.id">{{category.title}}</mat-option>
             </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Érvényességi idő" type="number" min="0" [(ngModel)]="model.period">
         </mat-form-field>
     </div>
     <div class="ck-container">
@@ -27,7 +25,3 @@
         <button mat-raised-button color="primary" (click)="savePost()">Mentés</button>
     </div>
 </div>
-
-<!--<div>
-    <p [innerHTML]="model.editorData"> </p>
-</div>-->

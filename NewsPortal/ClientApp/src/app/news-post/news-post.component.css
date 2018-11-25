@@ -23,11 +23,8 @@
 }
 
 .footer-section {
-    font-size: 1rem;
-}
-
-h5, .tag {
-    width: 20%;
+    font-size: 12px;
+    margin-top: 15px;
 }
 
 .category-container {
@@ -35,23 +32,22 @@ h5, .tag {
     justify-content: center;
     align-items: center;
     background-color: white;
-    color: #75709f;
-    border: 1px solid #75709f;
-    border-radius: 15px;
-    line-height: 1;
+    color: gray;
+    border: 1px solid gray;
+    height: 30px;
+    text-align: center
 }
 
     .category-container:hover {
-        background-color: #75709f;
-        color: #F9F9F9;
-        border-color: #F9F9F9;
+        color: #ff5e59;
+        border-color: #ff5e59;
         cursor: pointer;
     }
 
 .facebook {
     padding: 2px;
     font-size: 15px;
-    width: 50px;
+    width: 105px;
     text-align: center;
     text-decoration: none;
     margin: 5px 2px;

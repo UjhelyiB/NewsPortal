@@ -16,11 +16,18 @@
     </div>
     <mat-divider></mat-divider>
     <div class="footer-section">
-        <h5>Kategóriák: </h5>
-        <div class="tag" *ngFor="let category of post.categories">
-            <div>{{category.id}}</div>
+        <div class="row">
+            <h5 class="col-md-2">Kategóriák: </h5>
+            <div class="col-md-2" *ngFor="let category of post.categories">
+                <div class="category-container">{{category}}</div>
+            </div>
         </div>
     </div>
     <div class="footer-section">
-        <div style="display: inline-block"><span class="facebook" (click)="share()">Kedvelés</span></div>
+        <div style="text-align: right">
+            <button mat-raised-button class="facebook" color="primary" (click)="share()">
+                <mat-icon>thumb_up</mat-icon>
+            &nbsp;Kedvelés</button>
+        </div>
+    </div>
 </div>

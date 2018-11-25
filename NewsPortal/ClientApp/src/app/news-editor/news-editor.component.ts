@@ -27,6 +27,7 @@ export class NewsEditorComponent implements OnInit {
         editorData: '<p>Hello world!</p>',
         author: 'DodoJoy',
         createDate: '2018.11.24',
+        period: 1,
     };
 
     constructor(private newsService: NewsService, private categoryService: CategoryService) { }

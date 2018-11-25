@@ -4,14 +4,11 @@ a {
 }
 
     a:hover {
-        /*color: #ed1b2f;*/
-        /*color: #1d1e44;*/
         color: #ff5e59;
         text-decoration: none;
     }
 
 .meta {
-    /*color: #ff5e59;*/
     color: #75709f;
     font-size: 16px;
 }
