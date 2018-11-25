@@ -15,8 +15,14 @@ export class CategoryEditorComponent implements OnInit {
 
     categories: CategoryModel[];
     displayedColumns: string[] = ['id', 'title', 'actions'];
+    model: CategoryModel;
 
-    constructor(private categoryService: CategoryService, public dialog: MatDialog) { }
+    constructor(private categoryService: CategoryService, public dialog: MatDialog) {
+        this.model = {
+            Id: 0,
+            Title: '',
+        }
+    }
 
     ngOnInit() {
         this.getCategories();
@@ -29,13 +35,17 @@ export class CategoryEditorComponent implements OnInit {
     };
 
     updateCategory(id: number, title: string): void {
-        this.categoryService.updateCategory(id, { Id: id, Title: title }).subscribe();
+        this.categoryService.updateCategory(id, { Id: id, Title: title }).subscribe(() => this.getCategories());
         console.log('UPDATE CATEGORY: ' + id + ' TO: ' + title);
     }
 
     deleteCategory(id: number): void {
-        // TODO
+        this.categoryService.deleteCategory(id).subscribe(() => this.getCategories());
         console.log('DELETE CATEGORI: ' + id);
+    }
+
+    createCategory(): void {
+        this.categoryService.createCategory(this.model).subscribe(() => this.getCategories());
     }
 
     showEdit(id: number, title: string): void {
@@ -65,5 +75,9 @@ export class CategoryEditorComponent implements OnInit {
                 this.deleteCategory(id);
             }
         });
+    }
+
+    save() {
+        //TODO
     }
 }
