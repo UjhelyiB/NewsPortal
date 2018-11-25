@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="result-container">
-            <h3>Selected</h3>
+            <h3>{{getCategoryForId(selected)}}</h3>
             <mat-divider></mat-divider>
             <div *ngFor='let post of news'>
                 <app-news-section [post]="post"></app-news-section>

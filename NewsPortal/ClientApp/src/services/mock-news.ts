@@ -15,6 +15,7 @@ export const NEWS: News[] = [
         tags: 'everyday',
         date: '2018.11.06',
         author: 'DodoJoy',
+        categoryIds: [0],
     },
     {
         id: 12,
@@ -30,6 +31,7 @@ export const NEWS: News[] = [
         tags: 'everyday',
         date: '2018.11.06',
         author: 'DodoJoy',
+        categoryIds: [0],
     },
     {
         id: 13,
@@ -45,6 +47,7 @@ export const NEWS: News[] = [
         tags: 'everyday',
         date: '2018.11.06',
         author: 'DodoJoy',
+        categoryIds: [0],
     },
     {
         id: 14,
@@ -60,6 +63,7 @@ export const NEWS: News[] = [
         tags: 'everyday',
         date: '2018.11.06',
         author: 'DodoJoy',
+        categoryIds: [1],
     },
     {
         id: 15,
@@ -75,6 +79,7 @@ export const NEWS: News[] = [
         tags: 'everyday',
         date: '2018.11.06',
         author: 'DodoJoy',
+        categoryIds: [2],
     },
 
 ];

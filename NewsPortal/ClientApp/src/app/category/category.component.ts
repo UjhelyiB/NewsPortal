@@ -12,7 +12,7 @@ export class CategoryComponent implements OnInit {
 
     categories: Category[];
     news: News[];
-    selected: 0;
+    selected: number = 0;
 
     constructor(private categoryService: CategoryService, private newsService: NewsService) { }
 
@@ -26,7 +26,13 @@ export class CategoryComponent implements OnInit {
     }
 
     loadCategory(id: number): void {
+
+        this.selected = id;
+
         this.news = this.newsService.getNewsByCategory(id);
-        console.log('selected category: ' + id)
+    }
+
+    getCategoryForId(id: number): string {
+        return this.categoryService.getMockCategories().filter(_ => _.id == id)[0].title;
     }
 }

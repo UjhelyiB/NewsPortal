@@ -7,6 +7,7 @@ export interface News {
     tags: string; // TODO
     date: string;
     author: string;
+    categoryIds: number[];
 }
 
 export interface Category {

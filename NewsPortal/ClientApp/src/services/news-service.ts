@@ -19,6 +19,7 @@ export class NewsService {
         createDate: '2018.11.24',
     };
 
+
     constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
         this._news = new BehaviorSubject<NewsModel[]>(null);
 
@@ -47,7 +48,8 @@ export class NewsService {
     }
 
     getNewsByCategory(id: number): News[] {
-        return NEWS;
+
+        return NEWS.filter(cat => cat.categoryIds.filter(catId => catId == id).length > 0);
     }
 
     
