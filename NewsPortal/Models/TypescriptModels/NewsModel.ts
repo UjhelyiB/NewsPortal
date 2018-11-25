@@ -17,5 +17,7 @@ export class NewsModel {
 
     public Author: number = 0;
 
-    public Category: CategoryModel[] = [];
+    public CategoryIds: number[] = [];
+
+    public Categories: CategoryModel[] = [];
 }

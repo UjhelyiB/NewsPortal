@@ -1,6 +1,6 @@
 ﻿USE [master]
 GO
-/****** Object:  Database [NewsPortal]    Script Date: 2018. 11. 24. 23:33:09 ******/
+/****** Object:  Database [NewsPortal]    Script Date: 2018. 11. 25. 19:25:04 ******/
 CREATE DATABASE [NewsPortal]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -95,12 +95,12 @@ ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES =
 GO
 USE [NewsPortal]
 GO
-/****** Object:  User [NewsPortalUser]    Script Date: 2018. 11. 24. 23:33:09 ******/
+/****** Object:  User [NewsPortalUser]    Script Date: 2018. 11. 25. 19:25:04 ******/
 CREATE USER [NewsPortalUser] FOR LOGIN [NewsPortalUser] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [NewsPortalUser]
 GO
-/****** Object:  Table [dbo].[Category]    Script Date: 2018. 11. 24. 23:33:09 ******/
+/****** Object:  Table [dbo].[Category]    Script Date: 2018. 11. 25. 19:25:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -114,7 +114,7 @@ CREATE TABLE [dbo].[Category](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[News]    Script Date: 2018. 11. 24. 23:33:09 ******/
+/****** Object:  Table [dbo].[News]    Script Date: 2018. 11. 25. 19:25:05 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -133,7 +133,22 @@ CREATE TABLE [dbo].[News](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Writers]    Script Date: 2018. 11. 24. 23:33:09 ******/
+/****** Object:  Table [dbo].[NewsToCategory]    Script Date: 2018. 11. 25. 19:25:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[NewsToCategory](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[newsId] [int] NOT NULL,
+	[categoryId] [int] NOT NULL,
+ CONSTRAINT [PK_NewsToCategory] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Writers]    Script Date: 2018. 11. 25. 19:25:05 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -149,11 +164,17 @@ CREATE TABLE [dbo].[Writers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-SET IDENTITY_INSERT [dbo].[News] ON 
+SET IDENTITY_INSERT [dbo].[Category] ON 
 GO
-INSERT [dbo].[News] ([Id], [Title], [Lead], [Content], [CreateDate], [ValidPeriod], [Author]) VALUES (2, N'Test title', N'Test lead', N'Test content', CAST(N'2018-11-24T00:00:00.0000000' AS DateTime2), 14, 1)
+INSERT [dbo].[Category] ([id], [title]) VALUES (4, N'akció')
 GO
-SET IDENTITY_INSERT [dbo].[News] OFF
+INSERT [dbo].[Category] ([id], [title]) VALUES (6, N'sport')
+GO
+INSERT [dbo].[Category] ([id], [title]) VALUES (7, N'sport2')
+GO
+INSERT [dbo].[Category] ([id], [title]) VALUES (8, N'valamimas2')
+GO
+SET IDENTITY_INSERT [dbo].[Category] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Writers] ON 
 GO
@@ -162,6 +183,16 @@ GO
 INSERT [dbo].[Writers] ([Id], [UserName], [PasswordHash], [Salt]) VALUES (2, N'test2', N'6283EC42A6505836FDF6BDBBDB7728C275007D3118E855030E31F1932DB36AFB', N'7805537194')
 GO
 SET IDENTITY_INSERT [dbo].[Writers] OFF
+GO
+ALTER TABLE [dbo].[NewsToCategory]  WITH CHECK ADD  CONSTRAINT [FK_NewsToCategory_News] FOREIGN KEY([newsId])
+REFERENCES [dbo].[News] ([Id])
+GO
+ALTER TABLE [dbo].[NewsToCategory] CHECK CONSTRAINT [FK_NewsToCategory_News]
+GO
+ALTER TABLE [dbo].[NewsToCategory]  WITH CHECK ADD  CONSTRAINT [FK_NewsToCategory_NewsCategory] FOREIGN KEY([categoryId])
+REFERENCES [dbo].[Category] ([id])
+GO
+ALTER TABLE [dbo].[NewsToCategory] CHECK CONSTRAINT [FK_NewsToCategory_NewsCategory]
 GO
 USE [master]
 GO

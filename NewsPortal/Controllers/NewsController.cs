@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsPortal.Models.CSharpModels;
-using NewsPortal.Models.DatabaseObjects;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,9 +12,15 @@ namespace NewsPortal.Controllers
         private DAL dal = new DAL();
 
         [HttpGet("[action]")]
-        public IEnumerable<News> GetAllNews()
+        public IEnumerable<NewsModel> GetAllNews()
         {
             return dal.GetAllNews();
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<NewsModel> GetValidNews()
+        {
+            return dal.GetValidNews();
         }
 
         [HttpGet("{id}")]

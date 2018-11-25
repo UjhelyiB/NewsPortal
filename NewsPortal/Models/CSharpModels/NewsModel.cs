@@ -18,6 +18,8 @@ namespace NewsPortal.Models.CSharpModels
         public int ValidPeriod { get; set; }
         public int Author { get; set; }
 
-        public CategoryModel[] Category { get; set; }
+        public IEnumerable<int> CategoryIds { get; set; }
+
+        public IEnumerable<CategoryModel> Categories { get; set; }
     }
 }

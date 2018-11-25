@@ -43,7 +43,6 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { EditNewsComponent } from './edit-news/edit-news.component';
 import { AuthGuard } from '../services/auth-guard.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 export function tokenGetter() {
     return localStorage.getItem('jwt');
@@ -85,7 +84,6 @@ export function tokenGetter() {
         MatSnackBarModule,
         MatSliderModule,
         MatSortModule,
-        CKEditorModule,
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'counter', component: CounterComponent },
