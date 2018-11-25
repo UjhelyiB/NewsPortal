@@ -4,6 +4,8 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NewsService } from '../../services/news-service';
 import { News, Category } from '../../services/types';
 import { CategoryService } from '../../services/category.service';
+import { NewsModel } from '../../../../Models/TypescriptModels/NewsModel';
+import { AuthGuard } from '../../services/auth-guard.service';
 
 
 @Component({
@@ -20,17 +22,18 @@ export class NewsEditorComponent implements OnInit {
     post: News;
     categories: Category[];
 
-    public model = {
-        title: 'Mock Title',
-        lead: 'Indonesian police have arrested a man over the murder of an elderly Japanese couple whose bodies were found burned beyond recognition on the holiday island of Bali.',
-        categories: [0, 1],
-        editorData: '<p>Hello world!</p>',
-        author: 'DodoJoy',
-        createDate: '2018.11.24',
-        period: 1,
+    public model: NewsModel = {
+        Title: 'Mock Title',
+        Lead: 'Indonesian police have arrested a man over the murder of an elderly Japanese couple whose bodies were found burned beyond recognition on the holiday island of Bali.',
+        CategoryIds: [0, 1],
+        Content: '<p>Hello world!</p>',
+        Author: 'author',
+        CreateDate: new Date(),
+        ValidPeriod: 1,
+        Id: 0
     };
 
-    constructor(private newsService: NewsService, private categoryService: CategoryService) { }
+    constructor(private newsService: NewsService, private categoryService: CategoryService, private auth: AuthGuard) { }
 
     ngOnInit() {
         this.getPost(0);
@@ -46,6 +49,8 @@ export class NewsEditorComponent implements OnInit {
     }
 
     savePost() {
+        this.model.Author = this.auth.getUserName();
+
         this.newsService.savePost(this.model, 0);
     }
 }

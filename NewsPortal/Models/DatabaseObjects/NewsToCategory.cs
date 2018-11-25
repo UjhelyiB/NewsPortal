@@ -13,12 +13,5 @@ namespace NewsPortal.Models.DatabaseObjects
         public int NewsId { get; set; }
         [Column("categoryId")]
         public int CategoryId { get; set; }
-
-        [ForeignKey("CategoryId")]
-        [InverseProperty("NewsToCategory")]
-        public Category Category { get; set; }
-        [ForeignKey("NewsId")]
-        [InverseProperty("NewsToCategory")]
-        public News News { get; set; }
     }
 }

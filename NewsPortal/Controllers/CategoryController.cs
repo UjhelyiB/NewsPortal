@@ -25,7 +25,7 @@ namespace NewsPortal.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> DeleteCategory([FromRoute]int id)
         {
             await dal.DeleteCategory(id);
@@ -33,7 +33,7 @@ namespace NewsPortal.Controllers
         }
 
         [HttpPost("")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CreateCategory([FromBody]CategoryModel model)
         {
             var createdCategory = await dal.CreateCategory(model);
@@ -41,7 +41,7 @@ namespace NewsPortal.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> UpdateCategory([FromRoute]int id, [FromBody]CategoryModel model)
         {
             await dal.UpdateCategory(id, model);

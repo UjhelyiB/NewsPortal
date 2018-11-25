@@ -1,18 +1,15 @@
 <div class="col-sm-8 col-sm-offset-2">
-    <h1>{{post.title}}</h1>
+    <h1>{{post.Title}}</h1>
     <div class="meta">
         <div class="time">
-            <i class="material-icons">access_time</i><span>&nbsp;{{post.createDate}}</span>
-        </div>
-        <div class="tag">
-            <i class="material-icons">bookmark</i><span>&nbsp;{{post.tags}}</span>
+            <i class="material-icons">access_time</i><span>&nbsp;{{post.CreateDate | date }}</span>
         </div>
         <div class="author">
-            <i class="material-icons">create</i><span>&nbsp;{{post.author}}</span>
+            <i class="material-icons">create</i><span>&nbsp;{{post.Author}}</span>
         </div>
     </div>
     <div>
-        <p [innerHTML]="post.editorData"> </p>
+        <p [innerHTML]="post.Content"> </p>
     </div>
     <mat-divider></mat-divider>
     <div class="footer-section">

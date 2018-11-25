@@ -1,16 +1,13 @@
 <div style="width: 100%; margin-top:20px">
     <div class="meta">
         <div class="time">
-            <i class="material-icons">access_time</i><span>&nbsp;{{post.date}}</span>
-        </div>
-        <div class="tag">
-            <i class="material-icons">bookmark</i><span>&nbsp;{{post.tags}}</span>
+            <i class="material-icons">access_time</i><span>&nbsp;{{post.Date}}</span>
         </div>
         <div class="author">
-            <i class="material-icons">create</i><span>&nbsp;{{post.author}}</span>
+            <i class="material-icons">create</i><span>&nbsp;{{post.Author}}</span>
         </div>
     </div>
-    <h3 class="title" (click)="goToPost(post.id)" style="cursor:pointer">{{post.title}}</h3>
-    <div class="intro">{{post.intro}}</div>
+    <h3 class="title" (click)="goToPost(post.Id)" style="cursor:pointer">{{post.Title}}</h3>
+    <div class="intro">{{post.Intro}}</div>
 </div>
 <mat-divider></mat-divider>

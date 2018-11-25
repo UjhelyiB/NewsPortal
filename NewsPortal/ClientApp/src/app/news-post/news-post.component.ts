@@ -3,6 +3,7 @@ import { NewsService } from "../../services/news-service"
 import { News } from '../../services/types';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
+import { NewsModel } from '../../../../Models/TypescriptModels/NewsModel';
 
 @Component({
     selector: 'app-news-post',
@@ -11,12 +12,14 @@ import { CategoryService } from '../../services/category.service';
 })
 export class NewsPostComponent implements OnInit {
 
-    post;
+    post: NewsModel;
     id: number;
 
     constructor(private categoryService: CategoryService, private newsService: NewsService, private activateRoute: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
+        
+
         this.activateRoute.params.subscribe(params => {
             if (params['id']) {
                 this.id = params['id'];
@@ -32,8 +35,13 @@ export class NewsPostComponent implements OnInit {
     }
 
     getPost(id: number): void {
+
+
         // this.post = this.newsService.getMockPost(this.id);
         this.post = this.newsService.getMyMockedPost();
+
+
+        console.log(this.post);
     }
 
     loadCategory(id: number): void {

@@ -38,20 +38,20 @@ namespace NewsPortal.Models.DatabaseObjects
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<NewsToCategory>(entity =>
-            {
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.NewsToCategory)
-                    .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_NewsToCategory_NewsCategory");
+            //modelBuilder.Entity<NewsToCategory>(entity =>
+            //{
+            //    entity.HasOne(d => d.Category)
+            //        .WithMany(p => p.NewsToCategory)
+            //        .HasForeignKey(d => d.CategoryId)
+            //        .OnDelete(DeleteBehavior.ClientSetNull)
+            //        .HasConstraintName("FK_NewsToCategory_NewsCategory");
 
-                entity.HasOne(d => d.News)
-                    .WithMany(p => p.NewsToCategory)
-                    .HasForeignKey(d => d.NewsId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_NewsToCategory_News");
-            });
+            //    entity.HasOne(d => d.News)
+            //        .WithMany(p => p.NewsToCategory)
+            //        .HasForeignKey(d => d.NewsId)
+            //        .OnDelete(DeleteBehavior.ClientSetNull)
+            //        .HasConstraintName("FK_NewsToCategory_News");
+            //});
         }
     }
 }

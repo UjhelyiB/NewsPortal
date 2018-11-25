@@ -1,5 +1,4 @@
-﻿import { CategoryModel } from './CategoryModel';
-
+﻿
 export class NewsModel {
     
 
@@ -15,9 +14,7 @@ export class NewsModel {
 
     public ValidPeriod: number = 0;
 
-    public Author: number = 0;
+    public Author: string = null;
 
     public CategoryIds: number[] = [];
-
-    public Categories: CategoryModel[] = [];
 }

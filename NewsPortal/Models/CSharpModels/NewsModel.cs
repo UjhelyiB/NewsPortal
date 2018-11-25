@@ -16,10 +16,8 @@ namespace NewsPortal.Models.CSharpModels
         public string Content { get; set; }
         public DateTime? CreateDate { get; set; }
         public int ValidPeriod { get; set; }
-        public int Author { get; set; }
+        public string Author { get; set; }
 
         public IEnumerable<int> CategoryIds { get; set; }
-
-        public IEnumerable<CategoryModel> Categories { get; set; }
     }
 }

@@ -7,10 +7,6 @@ namespace NewsPortal.Models.DatabaseObjects
 {
     public partial class Category
     {
-        public Category()
-        {
-            NewsToCategory = new HashSet<NewsToCategory>();
-        }
 
         [Column("id")]
         public int Id { get; set; }
@@ -18,8 +14,5 @@ namespace NewsPortal.Models.DatabaseObjects
         [Column("title")]
         [StringLength(15)]
         public string Title { get; set; }
-
-        [InverseProperty("Category")]
-        public ICollection<NewsToCategory> NewsToCategory { get; set; }
     }
 }

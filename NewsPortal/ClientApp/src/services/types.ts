@@ -1,13 +1,13 @@
 export interface News {
-    id: number;
-    title: string;
-    cover: any; // TODO
-    intro: string;
-    body: string[];
-    tags: string; // TODO
-    date: string;
-    author: string;
-    categoryIds: number[];
+    Id: number;
+    Title: string;
+    Cover: any; // TODO
+    Intro: string;
+    Body: string[];
+    Tags: string; // TODO
+    Date: string;
+    Author: string;
+    CategoryIds: number[];
 }
 
 export interface Category {
