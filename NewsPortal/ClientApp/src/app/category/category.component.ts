@@ -3,6 +3,7 @@ import { CategoryService } from '../../services/category.service';
 import { Category, News } from '../../services/types';
 import { NewsService } from '../../services/news-service';
 import { ActivatedRoute } from '@angular/router';
+import { CategoryModel } from '../../../../Models/TypescriptModels/CategoryModel';
 
 @Component({
     selector: 'app-category',
@@ -11,20 +12,21 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CategoryComponent implements OnInit {
 
-    categories: Category[];
+    categories: CategoryModel[];
     news: News[];
-    selected: number = 0;
+    selected: number = 4;
 
     constructor(private categoryService: CategoryService, private newsService: NewsService, private activateRoute: ActivatedRoute) { }
 
     ngOnInit() {
         this.getCategories();
+        console.log(this.categories);
 
         this.activateRoute.params.subscribe(params => {
             if (params['id']) {
                 this.selected = params['id'];
             } else {
-                this.selected = 0;
+                this.selected = 4;
             }
 
             this.loadCategory(this.selected);
@@ -32,7 +34,9 @@ export class CategoryComponent implements OnInit {
     }
 
     getCategories(): void {
-        this.categories = this.categoryService.getMockCategories();
+        this.categoryService.getCategories().subscribe(result => {
+            this.categories =  result;
+        });
     }
 
     loadCategory(id: number): void {

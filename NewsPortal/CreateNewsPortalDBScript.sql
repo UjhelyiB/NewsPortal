@@ -1,4 +1,10 @@
-﻿USE [master]
+﻿/****** Object:  User [NewsPortalUser]    Script Date: 2018. 11. 25. 19:25:04 ******/
+CREATE USER [NewsPortalUser] FOR LOGIN [NewsPortalUser] WITH DEFAULT_SCHEMA=[dbo]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [NewsPortalUser]
+GO
+
+USE [master]
 GO
 /****** Object:  Database [NewsPortal]    Script Date: 2018. 11. 25. 19:25:04 ******/
 CREATE DATABASE [NewsPortal]
@@ -95,11 +101,7 @@ ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES =
 GO
 USE [NewsPortal]
 GO
-/****** Object:  User [NewsPortalUser]    Script Date: 2018. 11. 25. 19:25:04 ******/
-CREATE USER [NewsPortalUser] FOR LOGIN [NewsPortalUser] WITH DEFAULT_SCHEMA=[dbo]
-GO
-ALTER ROLE [db_owner] ADD MEMBER [NewsPortalUser]
-GO
+
 /****** Object:  Table [dbo].[Category]    Script Date: 2018. 11. 25. 19:25:04 ******/
 SET ANSI_NULLS ON
 GO

@@ -25,7 +25,7 @@ namespace NewsPortal.Models.DatabaseObjects
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=NewsPortal;Integrated Security=False;User Id=NewsPortalUser;Password=NewsPortalUser123;");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-3QEBAVL\\SQLEXPRESS;Initial Catalog=NewsPortal;Integrated Security=False;User Id=NewsPortalUser;Password=NewsPortalUser123;");
             }
         }
 

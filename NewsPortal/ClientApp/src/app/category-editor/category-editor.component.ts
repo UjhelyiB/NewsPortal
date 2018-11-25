@@ -4,6 +4,7 @@ import { CategoryService } from '../../services/category.service';
 import { MatDialog, MatDialogRef} from '@angular/material';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { CategoryModel } from '../../../../Models/TypescriptModels/CategoryModel';
 
 @Component({
     selector: 'app-category-editor',
@@ -12,7 +13,7 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 })
 export class CategoryEditorComponent implements OnInit {
 
-    categories: Category[];
+    categories: CategoryModel[];
     displayedColumns: string[] = ['id', 'title', 'actions'];
 
     constructor(private categoryService: CategoryService, public dialog: MatDialog) { }
@@ -22,11 +23,13 @@ export class CategoryEditorComponent implements OnInit {
     }
 
     getCategories(): void {
-        this.categories = this.categoryService.getMockCategories();
-    }
+        this.categoryService.getCategories().subscribe(result => {
+            this.categories = result;
+        });
+    };
 
     updateCategory(id: number, title: string): void {
-        // TODO
+        this.categoryService.updateCategory(id, { Id: id, Title: title }).subscribe();
         console.log('UPDATE CATEGORY: ' + id + ' TO: ' + title);
     }
 
