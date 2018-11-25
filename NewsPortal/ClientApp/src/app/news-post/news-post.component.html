@@ -5,7 +5,7 @@
             <i class="material-icons">access_time</i><span>&nbsp;{{post.createDate}}</span>
         </div>
         <div class="tag">
-            <i class="material-icons">bookmark</i><span>&nbsp;{{post.categories[0]}}</span>
+            <i class="material-icons">bookmark</i><span>&nbsp;{{post.tags}}</span>
         </div>
         <div class="author">
             <i class="material-icons">create</i><span>&nbsp;{{post.author}}</span>
@@ -19,7 +19,7 @@
         <div class="row">
             <h5 class="col-md-2">Kategóriák: </h5>
             <div class="col-md-2" *ngFor="let category of post.categories">
-                <div class="category-container">{{category}}</div>
+                <div class="category-container" (click)="loadCategory(category)">{{getCategoryForId(category)}}</div>
             </div>
         </div>
     </div>

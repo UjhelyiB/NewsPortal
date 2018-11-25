@@ -12,6 +12,8 @@ export class SearchComponent implements OnInit {
 
     news: News[];
 
+    searchKeyWords: string = "";
+
     constructor(private newsService: NewsService, public router: Router) { }
 
     ngOnInit() {
@@ -20,6 +22,11 @@ export class SearchComponent implements OnInit {
 
     getNews(): void {
         this.news = this.newsService.getMockNews();
-        // this.newsService.getMockNews().subscribe(news => this.news = news);
+    }
+
+
+    searchNews() {
+        console.log(this.searchKeyWords);
+        this.news = this.newsService.searchNews(this.searchKeyWords);
     }
 }

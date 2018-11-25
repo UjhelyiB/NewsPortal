@@ -95,6 +95,7 @@ export function tokenGetter() {
             { path: 'post/:id', component: NewsPostComponent },
             { path: 'search', component: SearchComponent },
             { path: 'category', component: CategoryComponent },
+            { path: 'category/:id', component: CategoryComponent },
             { path: 'category-editor', component: CategoryEditorComponent, canActivate: [AuthGuard] },
             { path: 'news-editor', component: NewsEditorComponent, canActivate: [AuthGuard] },
             { path: 'login', component: Login },

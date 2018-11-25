@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from "../../services/news-service"
 import { News } from '../../services/types';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
     selector: 'app-news-post',
@@ -13,7 +14,7 @@ export class NewsPostComponent implements OnInit {
     post;
     id: number;
 
-    constructor(private newsService: NewsService, private activateRoute: ActivatedRoute) { }
+    constructor(private categoryService: CategoryService, private newsService: NewsService, private activateRoute: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
         this.activateRoute.params.subscribe(params => {
@@ -36,10 +37,10 @@ export class NewsPostComponent implements OnInit {
     }
 
     loadCategory(id: number): void {
-        // TODO
+        this.router.navigate(["category/" + id]);
     }
 
-    share() {
-        // TODO
+    getCategoryForId(categoryId: number) {
+        return this.categoryService.getMockCategories().filter(_ => _.id == categoryId)[0].title;
     }
 }
