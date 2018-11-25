@@ -3,25 +3,28 @@
         <div class="search-container">
             <div style="width: 80%">
                 <!--<mat-form-field style="width: 100%; background-color: #F9F9F9">
-        <input matInput
-        type="text"
-        name="search"
-        placeholder="Írd be, hogy mit keresel...">
-    </mat-form-field>-->
-              
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search&hellip;">
-                        <span class="input-group-btn">
-                            <!--<button type="button" class="btn btn-default">Go</button>-->
-                            <button mat-raised-button class="login-button" color="primary">Go</button>
-                        </span>
-                    </div>
+                    <input matInput
+                    type="text"
+                    name="search"
+                    placeholder="Írd be, hogy mit keresel...">
+                </mat-form-field>-->
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Keresés&hellip;">
+                    <span class="input-group-btn">
+                        <!--<button type="button" class="btn btn-default">Go</button>-->
+                        <button mat-raised-button class="login-button" color="primary">Keresés</button>
+                    </span>
+                </div>
             </div>
         </div>
         <div class="result-container">
             <div *ngFor='let post of news'>
-            <app-news-section [post]="post"></app-news-section>
-        </div>
+                <app-news-section [post]="post"></app-news-section>
+            </div>
         </div>
     </div>
+</div>
+<div class="col-md-3" style="margin-bottom:20px">
+    <fb-like></fb-like>
 </div>

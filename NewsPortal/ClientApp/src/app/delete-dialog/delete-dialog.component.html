@@ -1,19 +1,19 @@
 <h2 i18n>Confirm delete</h2>
 <mat-dialog-content class="mat-typography">
-    <h3 mat-dialog-title i18n>Are you sure you want to delete this category? All news will be deleted permanently in this category.</h3>
+    <h3 mat-dialog-title i18n>Biztos ki akarod törölni ezt a kategóriát? Minden hír, ami ebben a kategóriában van, ki lesz törölve!</h3>
 </mat-dialog-content>
 <div mat-dialog-actions>
     <button mat-raised-button
             color="primary"
             i18n
             (click)="onCancel()">
-        Cancel
+        Mégse
     </button>
     <button mat-raised-button
             color="warn"
             i18n
             (click)="onOk()"
             cdkFocusInitial>
-        Delete
+        Törlés
     </button>
 </div>

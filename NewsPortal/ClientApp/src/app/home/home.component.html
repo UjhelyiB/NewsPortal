@@ -7,13 +7,13 @@
     <span class='glyphicon glyphicon-log-in'></span>
 </a>
 
-<a *ngIf="isLoggedIn()"  matTooltip="Kijelentkezés." style="cursor:pointer" (click)="logOut()">
+<a *ngIf="isLoggedIn()" matTooltip="Kijelentkezés." style="cursor:pointer" (click)="logOut()">
     <span class='glyphicon glyphicon-log-out'></span>
 </a>
 
 <div style="width: 100%">
     <div class="col-md-2"></div>
-    <div class="col-md-8"> 
+    <div class="col-md-8">
         <div class="other-news" style="width: 100%;">
             <div *ngFor='let post of news'>
                 <app-news-section [post]="post"></app-news-section>
@@ -22,3 +22,7 @@
     </div>
     <div class="col-md-2"></div>
 </div>
+<div class="col-md-3" style="margin-bottom:20px">
+    <fb-like></fb-like>
+</div>
+

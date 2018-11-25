@@ -17,16 +17,6 @@
                         <span class='glyphicon glyphicon-home'></span> Főoldal
                     </a>
                 </li>
-                <!--<li [routerLinkActive]='["link-active"]'>
-        <a [routerLink]='["/counter"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-education'></span> Counter
-        </a>
-    </li>
-    <li [routerLinkActive]='["link-active"]'>
-        <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-th-list'></span> Fetch data
-        </a>
-    </li>-->
                 <li [routerLinkActive]='["link-active"]'>
                     <a [routerLink]='["/search"]' (click)='collapse()'>
                         <span class='glyphicon glyphicon-search'></span> Keresés
@@ -37,24 +27,14 @@
                         <span class='glyphicon glyphicon-tags'></span> Kategóriák
                     </a>
                 </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/login"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-user'></span> Bejelentkezés
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
+                <li *ngIf="isLoggedIn()" [routerLinkActive]='["link-active"]'>
                     <a [routerLink]='["/category-editor"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-th-list'></span> Kategória szerkesztő
-                    </a>
-                </li>
-                <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/news-editor"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-pencil'></span> News editor (dodo)
+                        <span class='glyphicon glyphicon-th-list'></span>Kategória szerkesztő
                     </a>
                 </li>
                 <li *ngIf="isLoggedIn()" [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/edit-news"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-pencil'></span>Hírszerkesztő
+                    <a [routerLink]='["/news-editor"]' (click)='collapse()'>
+                        <span class='glyphicon glyphicon-pencil'></span>Hír szerkesztő
                     </a>
                 </li>
             </ul>
