@@ -20,3 +20,8 @@ table th, td {
 .button-row button {
     margin-right: 8px;
 }
+
+.create-container {
+    background-color: white;
+    margin-top: 40px;
+}

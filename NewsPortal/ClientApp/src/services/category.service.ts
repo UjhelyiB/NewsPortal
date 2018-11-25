@@ -18,6 +18,14 @@ export class CategoryService {
         return this.http.put(`${this.baseUrl}api/category/${id}`, content);
     }
 
+    deleteCategory(id: number): Observable<any> {
+        return this.http.delete(`${this.baseUrl}api/category/${id}`);
+    }
+
+    createCategory(content: CategoryModel): Observable<any> {
+        return this.http.post(`${this.baseUrl}api/category`, content);
+    }
+
     getMockCategories(): Category[] {
         return CATEGORIES;
     }

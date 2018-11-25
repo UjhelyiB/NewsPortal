@@ -1,3 +1,12 @@
+<div class="col-sm-8 col-sm-offset-2 create-container">
+    <div class="row">
+        <mat-form-field style="width: 100%">
+            <input matInput placeholder="Új kategória" [(ngModel)]="model.Title">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="createCategory()">Hozzáadás</button>
+    </div>
+</div>
+
 <div class="col-sm-8 col-sm-offset-2 table-container">
     <table mat-table [dataSource]="categories" class="mat-elevation-z8">
         <ng-container matColumnDef="id">
