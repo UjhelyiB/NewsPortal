@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace NewsPortal.Models.DatabaseObjects
 {
@@ -22,10 +24,15 @@ namespace NewsPortal.Models.DatabaseObjects
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-3QEBAVL\\SQLEXPRESS;Initial Catalog=NewsPortal;Integrated Security=False;User Id=NewsPortalUser;Password=NewsPortalUser123;");
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
+                var connectionString = configuration.GetConnectionString("NewsPortalDatabase");
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 
