@@ -1,12 +1,22 @@
-﻿USE [master]
+﻿/****** Login ******/
+USE [master]
 GO
-/****** Object:  Database [NewsPortal]    Script Date: 2018. 11. 25. 19:25:04 ******/
+
+/* For security reasons the login is created disabled and with a random password. */
+/****** Object:  Login [NewsPortalUser]    Script Date: 2018.11.03. 22:04:56 ******/
+CREATE LOGIN [NewsPortalUser] WITH PASSWORD='NewsPortalUser123', DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=ON
+
+
+GO
+USE [master]
+GO
+/****** Object:  Database [NewsPortal]    Script Date: 2018.11.25. 20:26:56 ******/
 CREATE DATABASE [NewsPortal]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'NewsPortal', FILENAME = N'D:\temp\dori\NewsPortal.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+( NAME = N'NewsPortal', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\NewsPortal.mdf' , SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
-( NAME = N'NewsPortal_log', FILENAME = N'D:\temp\dori\NewsPortal_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+( NAME = N'NewsPortal_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\NewsPortal_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 ALTER DATABASE [NewsPortal] SET COMPATIBILITY_LEVEL = 120
 GO
@@ -73,34 +83,14 @@ ALTER DATABASE [NewsPortal] SET TARGET_RECOVERY_TIME = 0 SECONDS
 GO
 ALTER DATABASE [NewsPortal] SET DELAYED_DURABILITY = DISABLED 
 GO
-ALTER DATABASE [NewsPortal] SET QUERY_STORE = OFF
-GO
 USE [NewsPortal]
 GO
-ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
-GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET LEGACY_CARDINALITY_ESTIMATION = PRIMARY;
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
-GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET MAXDOP = PRIMARY;
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
-GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET PARAMETER_SNIFFING = PRIMARY;
-GO
-ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
-GO
-ALTER DATABASE SCOPED CONFIGURATION FOR SECONDARY SET QUERY_OPTIMIZER_HOTFIXES = PRIMARY;
-GO
-USE [NewsPortal]
-GO
-/****** Object:  User [NewsPortalUser]    Script Date: 2018. 11. 25. 19:25:04 ******/
+/****** Object:  User [NewsPortalUser]    Script Date: 2018.11.25. 20:26:56 ******/
 CREATE USER [NewsPortalUser] FOR LOGIN [NewsPortalUser] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [NewsPortalUser]
 GO
-/****** Object:  Table [dbo].[Category]    Script Date: 2018. 11. 25. 19:25:04 ******/
+/****** Object:  Table [dbo].[Category]    Script Date: 2018.11.25. 20:26:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -114,7 +104,7 @@ CREATE TABLE [dbo].[Category](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[News]    Script Date: 2018. 11. 25. 19:25:05 ******/
+/****** Object:  Table [dbo].[News]    Script Date: 2018.11.25. 20:26:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -133,7 +123,7 @@ CREATE TABLE [dbo].[News](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[NewsToCategory]    Script Date: 2018. 11. 25. 19:25:05 ******/
+/****** Object:  Table [dbo].[NewsToCategory]    Script Date: 2018.11.25. 20:26:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -148,7 +138,7 @@ CREATE TABLE [dbo].[NewsToCategory](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Writers]    Script Date: 2018. 11. 25. 19:25:05 ******/
+/****** Object:  Table [dbo].[Writers]    Script Date: 2018.11.25. 20:26:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -165,24 +155,21 @@ CREATE TABLE [dbo].[Writers](
 ) ON [PRIMARY]
 GO
 SET IDENTITY_INSERT [dbo].[Category] ON 
-GO
+
 INSERT [dbo].[Category] ([id], [title]) VALUES (4, N'akció')
-GO
 INSERT [dbo].[Category] ([id], [title]) VALUES (6, N'sport')
-GO
 INSERT [dbo].[Category] ([id], [title]) VALUES (7, N'sport2')
-GO
 INSERT [dbo].[Category] ([id], [title]) VALUES (8, N'valamimas2')
-GO
 SET IDENTITY_INSERT [dbo].[Category] OFF
-GO
 SET IDENTITY_INSERT [dbo].[Writers] ON 
-GO
+
 INSERT [dbo].[Writers] ([Id], [UserName], [PasswordHash], [Salt]) VALUES (1, N'test', N'B46E30CA854EA909651EC766A03A8E14B7258AD23DEB859A4C7F00EA43A77855', N'5005863751')
-GO
 INSERT [dbo].[Writers] ([Id], [UserName], [PasswordHash], [Salt]) VALUES (2, N'test2', N'6283EC42A6505836FDF6BDBBDB7728C275007D3118E855030E31F1932DB36AFB', N'7805537194')
-GO
 SET IDENTITY_INSERT [dbo].[Writers] OFF
+ALTER TABLE [dbo].[News]  WITH CHECK ADD  CONSTRAINT [FK_News_Writers] FOREIGN KEY([Author])
+REFERENCES [dbo].[Writers] ([Id])
+GO
+ALTER TABLE [dbo].[News] CHECK CONSTRAINT [FK_News_Writers]
 GO
 ALTER TABLE [dbo].[NewsToCategory]  WITH CHECK ADD  CONSTRAINT [FK_NewsToCategory_News] FOREIGN KEY([newsId])
 REFERENCES [dbo].[News] ([Id])

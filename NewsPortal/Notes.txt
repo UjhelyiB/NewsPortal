@@ -9,5 +9,7 @@ Visual Studio C# to Typescript:
 
   Automatically generates typescript classes from C# objects.
 
+Connection String: set in the appsettings.json
+
 DB mapping - refresh the Models classes from the database:
 PM> Scaffold-DbContext "Data Source=BENEDEK-PC\SQLEXPRESS;Initial Catalog=NewsPortal;Integrated Security=False;User Id=NewsPortalUser;Password=NewsPortalUser123;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models/DatabaseObjects -Context "NewsPortalDBContext" -DataAnnotations -Force
