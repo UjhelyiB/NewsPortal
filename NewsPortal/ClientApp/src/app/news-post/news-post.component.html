@@ -1,1 +1,26 @@
-<div>It works! :D</div>
+<div class="col-sm-8 col-sm-offset-2">
+    <h1>{{post.title}}</h1>
+    <div class="meta">
+        <div class="time">
+            <i class="material-icons">access_time</i><span>&nbsp;{{post.createDate}}</span>
+        </div>
+        <div class="tag">
+            <i class="material-icons">bookmark</i><span>&nbsp;{{post.categories[0]}}</span>
+        </div>
+        <div class="author">
+            <i class="material-icons">create</i><span>&nbsp;{{post.author}}</span>
+        </div>
+    </div>
+    <div>
+        <p [innerHTML]="post.editorData"> </p>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="footer-section">
+        <h5>Kategóriák: </h5>
+        <div class="tag" *ngFor="let category of post.categories">
+            <div>{{category.id}}</div>
+        </div>
+    </div>
+    <div class="footer-section">
+        <div style="display: inline-block"><span class="facebook" (click)="share()">Kedvelés</span></div>
+</div>

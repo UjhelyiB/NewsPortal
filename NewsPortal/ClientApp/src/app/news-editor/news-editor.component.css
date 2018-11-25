@@ -1,0 +1,23 @@
+.editor-container {
+    margin-top: 45px;
+}
+
+.meta-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ck-container {
+    margin-top: 20px;
+}
+
+.additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+}
+
+.btn-container {
+    margin-top: 20px;
+    text-align: right;
+}

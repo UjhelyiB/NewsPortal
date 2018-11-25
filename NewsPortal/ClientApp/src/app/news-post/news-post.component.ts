@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NewsPostComponent implements OnInit {
 
-    post: News;
+    post;
     id: number;
 
     constructor(private newsService: NewsService, private activateRoute: ActivatedRoute) { }
@@ -19,16 +19,27 @@ export class NewsPostComponent implements OnInit {
         this.activateRoute.params.subscribe(params => {
             if (params['id']) {
                 this.id = params['id'];
-                this.getPost(this.id);
+                console.log(this.id);
+                //this.getPost(this.id);
                 /*this.newsService.getMockPost(this.id).subscribe(post => {
                     this.post = post;*/
             } else {
                 console.log('Hiba');
             }
         });
+        this.getPost(0);
     }
 
     getPost(id: number): void {
-        this.post = this.newsService.getMockPost(this.id);
+        // this.post = this.newsService.getMockPost(this.id);
+        this.post = this.newsService.getMyMockedPost();
+    }
+
+    loadCategory(id: number): void {
+        // TODO
+    }
+
+    share() {
+        // TODO
     }
 }

@@ -1,1 +1,33 @@
-<div>It works! :D</div>
+<div class="col-sm-8 col-sm-offset-2 editor-container">
+    <div class="meta-container">
+        <mat-form-field>
+            <input matInput placeholder="Cím" [(ngModel)]="model.title">
+        </mat-form-field>
+
+        <mat-form-field>
+            <textarea matInput placeholder="Lead szöveg..." [(ngModel)]="model.lead"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Kategóriák" multiple [(ngModel)]="model.categories">
+                <!--<mat-select-trigger>
+                    {{model.categories ? model.categories[0] : ''}}
+                    <span *ngIf="model.categories?.length > 1" class="additional-selection">
+                        (+{{model.categories.length - 1}} {{model.categories?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                </mat-select-trigger>-->
+                <mat-option *ngFor="let category of categories" [value]="category.id">{{category.title}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="ck-container">
+        <ckeditor [(ngModel)]="model.editorData" [editor]="Editor" [config]="config"></ckeditor>
+    </div>
+    <div class="btn-container">
+        <button mat-raised-button color="primary" (click)="savePost()">Mentés</button>
+    </div>
+</div>
+
+<!--<div>
+    <p [innerHTML]="model.editorData"> </p>
+</div>-->

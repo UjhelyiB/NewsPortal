@@ -1,1 +1,65 @@
+.meta {
+    color: gray;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
 
+.material-icons {
+    font-size: 16px;
+}
+
+.time {
+    display: inline;
+    margin-right: 20px;
+}
+
+.tag {
+    display: inline;
+    margin-right: 20px;
+}
+
+.author {
+    display: inline;
+}
+
+.footer-section {
+    font-size: 1rem;
+}
+
+h5, .tag {
+    width: 20%;
+}
+
+.category-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: #75709f;
+    border: 1px solid #75709f;
+    border-radius: 15px;
+    line-height: 1;
+}
+
+    .category-container:hover {
+        background-color: #75709f;
+        color: #F9F9F9;
+        border-color: #F9F9F9;
+        cursor: pointer;
+    }
+
+.facebook {
+    padding: 2px;
+    font-size: 15px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    background: #3B5998;
+    color: white;
+}
+
+.facebook:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
