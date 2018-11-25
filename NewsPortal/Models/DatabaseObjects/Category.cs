@@ -5,28 +5,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewsPortal.Models.DatabaseObjects
 {
-    public partial class News
+    public partial class Category
     {
-        public News()
+        public Category()
         {
             NewsToCategory = new HashSet<NewsToCategory>();
         }
 
+        [Column("id")]
         public int Id { get; set; }
         [Required]
-        [Column(TypeName = "ntext")]
+        [Column("title")]
+        [StringLength(15)]
         public string Title { get; set; }
-        [Required]
-        [Column(TypeName = "ntext")]
-        public string Lead { get; set; }
-        [Required]
-        [Column(TypeName = "ntext")]
-        public string Content { get; set; }
-        public DateTime CreateDate { get; set; }
-        public int ValidPeriod { get; set; }
-        public int Author { get; set; }
 
-        [InverseProperty("News")]
+        [InverseProperty("Category")]
         public ICollection<NewsToCategory> NewsToCategory { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace NewsPortal.Controllers
                     issuer: Startup.url,
                     audience: Startup.url,
                     claims: new List<Claim>(),
-                    expires: DateTime.Now.AddMinutes(5),
+                    expires: DateTime.Now.AddDays(5),
                     signingCredentials: signinCredentials
                 );
 

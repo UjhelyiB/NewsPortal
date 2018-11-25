@@ -71,6 +71,9 @@
     <None Update="Models\TypescriptModels\LoginModel.ts">
       <CustomToolNamespace>Login\LoginModel.cs</CustomToolNamespace>
     </None>
+    <None Update="Models\TypescriptModels\NewsListItemModel.ts">
+      <CustomToolNamespace>Models\CSharpModels\NewsListItemModel.cs</CustomToolNamespace>
+    </None>
     <None Update="Models\TypescriptModels\NewsModel.ts">
       <CustomToolNamespace>Models\CSharpModels\NewsModel.cs</CustomToolNamespace>
     </None>
