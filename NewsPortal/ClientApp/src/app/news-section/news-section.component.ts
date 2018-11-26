@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { News } from '../../services/types';
+import { NewsModel } from '../../../../Models/TypescriptModels/NewsModel';
 
 @Component({
     selector: 'app-news-section',
@@ -9,7 +10,7 @@ import { News } from '../../services/types';
 })
 export class NewsSectionComponent {
 
-    @Input() post: News;
+    @Input() post: NewsModel;
 
     constructor(public router: Router) { }
 

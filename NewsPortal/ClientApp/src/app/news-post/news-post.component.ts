@@ -4,6 +4,7 @@ import { News } from '../../services/types';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../services/category.service';
 import { NewsModel } from '../../../../Models/TypescriptModels/NewsModel';
+import { CategoryModel } from '../../../../Models/TypescriptModels/CategoryModel';
 
 @Component({
     selector: 'app-news-post',
@@ -15,10 +16,14 @@ export class NewsPostComponent implements OnInit {
     post: NewsModel;
     id: number;
 
+    categories: CategoryModel[];
+
     constructor(private categoryService: CategoryService, private newsService: NewsService, private activateRoute: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
-        
+        this.categoryService.getCategories().subscribe(res => {
+            this.categories = res;
+        };
 
         this.activateRoute.params.subscribe(params => {
             if (params['id']) {
@@ -45,8 +50,6 @@ export class NewsPostComponent implements OnInit {
     }
 
     getCategoryForId(categoryId: number) {
-        return this.categoryService.getCategories().subscribe(res => {
-            res.filter(_ => _.Id == categoryId)[0].Title;
-        });
+        return this.categories.filter(_ => _.Id == categoryId)[0].Title;
     }
 }
