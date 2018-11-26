@@ -10,12 +10,12 @@
 
         <mat-form-field>
             <mat-select placeholder="Kategóriák" multiple [(ngModel)]="model.CategoryIds">
-                <mat-option *ngFor="let category of categories" [value]="category.id">{{category.title}}</mat-option>
+                <mat-option *ngFor="let category of categories" [value]="category.Id">{{category.Title}}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput placeholder="Érvényességi idő (nap)" type="number" min="0" [(ngModel)]="model.Period">
+            <input matInput placeholder="Érvényességi idő (nap)" type="number" min="0" [(ngModel)]="model.ValidPeriod">
         </mat-form-field>
 
     </div>

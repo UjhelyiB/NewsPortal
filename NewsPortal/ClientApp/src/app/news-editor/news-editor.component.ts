@@ -6,6 +6,7 @@ import { News, Category } from '../../services/types';
 import { CategoryService } from '../../services/category.service';
 import { NewsModel } from '../../../../Models/TypescriptModels/NewsModel';
 import { AuthGuard } from '../../services/auth-guard.service';
+import { CategoryModel } from '../../../../Models/TypescriptModels/CategoryModel';
 
 
 @Component({
@@ -19,14 +20,15 @@ export class NewsEditorComponent implements OnInit {
     public config = {
         language: 'hu'
     };
-    post: News;
-    categories: Category[];
+    post: NewsModel;
+    categories: CategoryModel[];
 
     public model: NewsModel = {
-        Title: 'Mock Title',
-        Lead: 'Indonesian police have arrested a man over the murder of an elderly Japanese couple whose bodies were found burned beyond recognition on the holiday island of Bali.',
-        CategoryIds: [0, 1],
-        Content: '<p>Hello world!</p>',
+        Title: 'Title',
+        Lead: 'Short description',
+        CategoryIds: [],
+
+        Content: '<p>Full description:</p><p>Text...</p>',
         Author: 'author',
         CreateDate: new Date(),
         ValidPeriod: 1,
@@ -36,16 +38,12 @@ export class NewsEditorComponent implements OnInit {
     constructor(private newsService: NewsService, private categoryService: CategoryService, private auth: AuthGuard) { }
 
     ngOnInit() {
-        this.getPost(0);
         this.getCategories();
     }
-
-    getPost(id: number) {
-        this.post = this.newsService.getMockPost(id);
-    }
+    
 
     getCategories() {
-        this.categories = this.categoryService.getMockCategories();
+        this.categoryService.getCategories().subscribe(_ => this.categories = _);
     }
 
     savePost() {

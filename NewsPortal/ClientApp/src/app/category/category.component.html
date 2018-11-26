@@ -5,8 +5,8 @@
             <mat-divider></mat-divider>
             <div class="row">
                 <div class="col-md-3" *ngFor="let category of categories">
-                    <div class="category-container" (click)="loadCategory(category.id)">
-                        <span>{{category.title}}</span>
+                    <div class="category-container" (click)="loadCategory(category.Id)">
+                        <span>{{category.Title}}</span>
                     </div>
                 </div>
             </div>
@@ -14,6 +14,9 @@
         <div class="result-container">
             <h3>{{getCategoryForId(selected)}}</h3>
             <mat-divider></mat-divider>
+            <div *ngIf="news == null || news == undefined">
+                <mat-spinner></mat-spinner>
+            </div>
             <div *ngFor='let post of news'>
                 <app-news-section [post]="post"></app-news-section>
             </div>

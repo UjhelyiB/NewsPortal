@@ -1,26 +1,31 @@
-<div class="col-sm-8 col-sm-offset-2">
-    <h1>{{post.Title}}</h1>
-    <div class="meta">
-        <div class="time">
-            <i class="material-icons">access_time</i><span>&nbsp;{{post.CreateDate | date }}</span>
-        </div>
-        <div class="author">
-            <i class="material-icons">create</i><span>&nbsp;{{post.Author}}</span>
-        </div>
-    </div>
-    <div>
-        <p [innerHTML]="post.Content"> </p>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="footer-section">
-        <div class="row">
-            <h5 class="col-md-2">Kategóriák: </h5>
-            <div class="col-md-2" *ngFor="let category of post.categories">
-                <div class="category-container" (click)="loadCategory(category)">{{getCategoryForId(category)}}</div>
+<div *ngIf="!post">
+    <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="post">
+    <div class="col-sm-8 col-sm-offset-2">
+        <h1>{{post.Title}}</h1>
+        <div class="meta">
+            <div class="time">
+                <i class="material-icons">access_time</i><span>&nbsp;{{post.CreateDate | date }}</span>
+            </div>
+            <div class="author">
+                <i class="material-icons">create</i><span>&nbsp;{{post.Author}}</span>
             </div>
         </div>
-    </div>
-    <div class="footer-section">
-        <fb-like></fb-like>
+        <div>
+            <p [innerHTML]="post.Content"> </p>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="footer-section">
+            <div class="row">
+                <h5 class="col-md-2">Kategóriák: </h5>
+                <div class="col-md-2" *ngFor="let category of post.CategoryIds">
+                    <div class="category-container" (click)="loadCategory(category)">{{getCategoryForId(category)}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section">
+            <fb-like></fb-like>
+        </div>
     </div>
 </div>

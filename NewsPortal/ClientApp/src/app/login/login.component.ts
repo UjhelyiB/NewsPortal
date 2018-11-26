@@ -24,7 +24,7 @@ export class Login {
                 "Content-Type": "application/json"
             })
         }).subscribe(response => {
-            let token = (<any>response).token;
+            let token = (<any>response).Token;
             localStorage.setItem("jwt", token);
             localStorage.setItem("userName", this.credentials.UserName);
             this.invalidLogin = false;

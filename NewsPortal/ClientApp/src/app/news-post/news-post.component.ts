@@ -24,24 +24,22 @@ export class NewsPostComponent implements OnInit {
             if (params['id']) {
                 this.id = params['id'];
                 console.log(this.id);
-                //this.getPost(this.id);
+                this.getPost(this.id);
                 /*this.newsService.getMockPost(this.id).subscribe(post => {
                     this.post = post;*/
             } else {
-                console.log('Hiba');
+                this.id = 0;
             }
+
+            this.getPost(this.id);
         });
-        this.getPost(0);
     }
 
     getPost(id: number): void {
-
-
-        // this.post = this.newsService.getMockPost(this.id);
-        this.post = this.newsService.getMyMockedPost();
-
-
-        console.log(this.post);
+        this.newsService.getNewsById(id).subscribe(res => {
+            this.post = res;
+            console.log(this.post);
+        });
     }
 
     loadCategory(id: number): void {
@@ -49,6 +47,9 @@ export class NewsPostComponent implements OnInit {
     }
 
     getCategoryForId(categoryId: number) {
-        return this.categoryService.getMockCategories().filter(_ => _.id == categoryId)[0].title;
+        return this.categoryService.getCategories().subscribe(res => {
+            console.log(res);
+            res.filter(_ => _.Id == categoryId)[0].Title;
+        });
     }
 }

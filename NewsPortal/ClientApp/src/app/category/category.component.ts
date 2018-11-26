@@ -4,6 +4,7 @@ import { Category, News } from '../../services/types';
 import { NewsService } from '../../services/news-service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryModel } from '../../../../Models/TypescriptModels/CategoryModel';
+import { NewsModel } from '../../../../Models/TypescriptModels/NewsModel';
 
 @Component({
     selector: 'app-category',
@@ -13,7 +14,7 @@ import { CategoryModel } from '../../../../Models/TypescriptModels/CategoryModel
 export class CategoryComponent implements OnInit {
 
     categories: CategoryModel[];
-    news: News[];
+    news: NewsModel[];
     selected: number = 4;
 
     constructor(private categoryService: CategoryService, private newsService: NewsService, private activateRoute: ActivatedRoute) { }
@@ -26,7 +27,7 @@ export class CategoryComponent implements OnInit {
             if (params['id']) {
                 this.selected = params['id'];
             } else {
-                this.selected = 4;
+                this.selected = -1;
             }
 
             this.loadCategory(this.selected);
@@ -40,13 +41,23 @@ export class CategoryComponent implements OnInit {
     }
 
     loadCategory(id: number): void {
+        if (id == -1) {
+            this.newsService.getNews().subscribe(res => { this.news = res; });
+        } else {
+            this.selected = id;
 
-        this.selected = id;
-
-        this.news = this.newsService.getNewsByCategory(id);
+            this.newsService.getNewsByCategory(id).subscribe(res => { this.news = res; });
+        }
     }
 
     getCategoryForId(id: number): string {
-        return this.categoryService.getMockCategories().filter(_ => _.id == id)[0].title;
+        if (id == -1) {
+            return "Összes";
+        }
+        if (this.categories) {
+            return this.categories.filter(_ => _.Id == id)[0].Title;
+        }
+        return "";
+        
     }
 }

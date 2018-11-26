@@ -1,6 +1,6 @@
 import { Injectable, Inject } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { NewsModel } from "../../../Models/TypescriptModels/NewsModel";
 import { News } from "./types";
 import { NEWS } from "./mock-news"
@@ -30,35 +30,27 @@ export class NewsService {
     };
 
     constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
-        this._news = new BehaviorSubject<NewsModel[]>(null);
 
-
-        this.http.get<NewsModel[]>(this.baseUrl + 'api/News/GetAllNews').subscribe(result => {
-
-            this.setNews(result);
-        }, error => console.error(error));
 
     }
 
-    setNews(value: NewsModel[]) {
-        this._news.next(value);
+     getNews(): Observable<NewsModel[]> {
+         var x = this.http.get<NewsModel[]>(this.baseUrl + 'api/News/GetAllNews');
+
+         return x;
     }
 
-    getNews() {
-        return this._news.asObservable();
+    getNewsById(id: number): Observable<NewsModel> {
+        var x = this.http.get<NewsModel>(`${this.baseUrl}api/News/GetNews/${id}`);
+
+        return x;
     }
 
-    getMockNews(): News[] {
-        return NEWS;
-    }
 
-    getMockPost(id: number): News {
-        return NEWS[0];
-    }
+    getNewsByCategory(id: number): Observable<NewsModel[]> {
+        return this.http.get<NewsModel[]>(this.baseUrl + 'api/News/GetNewsByCategory/?category=' + id);
 
-    getNewsByCategory(id: number): News[] {
-
-        return NEWS.filter(cat => cat.CategoryIds.filter(catId => catId == id).length > 0);
+        //return NEWS.filter(cat => cat.CategoryIds.filter(catId => catId == id).length > 0);
     }
 
     
@@ -77,28 +69,4 @@ export class NewsService {
     getMyMockedPost() {
         return this.postmodel;
     }
-
-    searchNews(searchKeyWords: string): any {
-        let keywords: string[] = searchKeyWords.split(' ');
-
-        let result = new Set<News>();
-
-        for (let news of NEWS) {
-            let i = 0;
-            while (i < keywords.length) {
-                if (news.Author.indexOf(keywords[i]) == -1 && news.Body.indexOf(keywords[i]) == -1 && news.Date.indexOf(keywords[i]) == -1
-                    && news.Intro.indexOf(keywords[i]) == -1 && news.Title.indexOf(keywords[i]) == -1) {
-                    break;
-                }
-                i++;
-            }
-            if (i == keywords.length) {
-                result.add(news);
-            }
-        }
-
-        return result;
-    }
-
-
 }

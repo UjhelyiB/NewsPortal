@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { News } from '../../services/types';
 import { NewsService } from '../../services/news-service';
 import { Router } from '@angular/router';
+import { NewsModel } from '../../../../Models/TypescriptModels/NewsModel';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
     selector: 'app-search',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-    news: News[];
+    news: NewsModel[];
 
     searchKeyWords: string = "";
 
@@ -21,12 +23,37 @@ export class SearchComponent implements OnInit {
     }
 
     getNews(): void {
-        this.news = this.newsService.getMockNews();
+        this.newsService.getNews().subscribe(res => { this.news = res; });
     }
 
 
     searchNews() {
-        console.log(this.searchKeyWords);
-        this.news = this.newsService.searchNews(this.searchKeyWords);
+
+        this.newsService.getNews().subscribe(res => {
+            let keywords: string[] = this.searchKeyWords.split(' ');
+
+            this.news = [];
+
+            let result = new Set<NewsModel>();
+            
+                for (let news of res) {
+                    let i = 0;
+                    while (i < keywords.length) {
+                        if (news.Author.indexOf(keywords[i]) == -1 && news.Content.indexOf(keywords[i]) == -1 && news.CreateDate.toString().indexOf(keywords[i]) == -1
+                            && news.Lead.indexOf(keywords[i]) == -1 && news.Title.indexOf(keywords[i]) == -1) {
+                            break;
+                        }
+                        i++;
+                    }
+                    if (i == keywords.length) {
+                        result.add(news);
+                    }
+                }
+
+
+
+
+            result.forEach(_ => this.news.push(_));
+        });
     }
 }

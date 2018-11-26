@@ -1,4 +1,7 @@
 <h1>Hírportál</h1>
+<div *ngIf="news == null || news == undefined">
+    <mat-spinner></mat-spinner>
+</div>
 <div *ngIf="isLoggedIn()">
     Bejelentkezve mint: <b>{{getUserName()}}</b>
 </div>

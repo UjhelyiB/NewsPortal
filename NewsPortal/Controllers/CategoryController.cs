@@ -19,9 +19,9 @@ namespace NewsPortal.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<CategoryModel> GetCategory([FromRoute]int id)
+        public CategoryModel GetCategory([FromRoute]int id)
         {
-            return await dal.GetCategory(id);
+            return dal.GetCategory(id);
         }
 
         [HttpDelete("{id}")]

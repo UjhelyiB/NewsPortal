@@ -1,13 +1,13 @@
 <div style="width: 100%; margin-top:20px">
     <div class="meta">
         <div class="time">
-            <i class="material-icons">access_time</i><span>&nbsp;{{post.Date}}</span>
+            <i class="material-icons">access_time</i><span>&nbsp;{{post.CreateDate | date}}</span>
         </div>
         <div class="author">
             <i class="material-icons">create</i><span>&nbsp;{{post.Author}}</span>
         </div>
     </div>
     <h3 class="title" (click)="goToPost(post.Id)" style="cursor:pointer">{{post.Title}}</h3>
-    <div class="intro">{{post.Intro}}</div>
+    <div class="intro">{{post.Lead}}</div>
 </div>
 <mat-divider></mat-divider>

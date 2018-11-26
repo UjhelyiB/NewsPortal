@@ -20,6 +20,7 @@ import {
     MatSliderModule,
     MatSortModule,
     MatTableModule,
+    MatProgressSpinnerModule,
     MatListModule,
     MatDialogModule,
 } from '@angular/material';
@@ -79,6 +80,7 @@ export function tokenGetter() {
         MatButtonModule,
         MatTableModule,
         MatDialogModule,
+        MatProgressSpinnerModule,
         MatSelectModule,
         MatSnackBarModule,
         MatTooltipModule,

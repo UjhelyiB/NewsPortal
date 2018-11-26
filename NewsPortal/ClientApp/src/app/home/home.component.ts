@@ -3,15 +3,16 @@ import { NewsService } from "../../services/news-service"
 import { News } from '../../services/types';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../../services/auth-guard.service';
+import { NewsModel } from '../../../../Models/TypescriptModels/NewsModel';
 
 @Component({
-  selector: 'app-home',
+    selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
-    news: News[];
+    news: NewsModel[];
 
     constructor(private newsService: NewsService, public router: Router, private auth: AuthGuard) { }
 
@@ -20,7 +21,10 @@ export class HomeComponent implements OnInit{
     }
 
     getNews(): void {
-        this.news = this.newsService.getMockNews();
+        this.newsService.getNews().subscribe(res => {
+            console.log(res);
+            this.news = res;
+        });
         // this.newsService.getMockNews().subscribe(news => this.news = news);
     }
 

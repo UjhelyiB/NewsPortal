@@ -10,47 +10,169 @@ namespace NewsPortal
 {
     public class DAL
     {
-        private NewsPortalDBContext db;
+        private NewsPortalDBContext db = new NewsPortalDBContext();
 
         #region news
         public IEnumerable<NewsModel> GetAllNews()
         {
-            IEnumerable<News> result = new List<News>();
+            IList<NewsModel> x = new List<NewsModel>();
 
-            using (db = new NewsPortalDBContext())
+            try
             {
-                result = db.News.ToList();
-            }
 
-            return result.Select(news => this.MapNewsEntityToDto(news));
+
+
+
+                    foreach (var newsEntity in db.News)
+                    {
+                        string name;
+                        IQueryable<int> ids;
+
+
+                        name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
+                        ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
+
+
+                        x.Add(new NewsModel()
+                        {
+                            Author = name,
+                            Content = newsEntity.Content,
+                            CategoryIds = ids,
+                            CreateDate = newsEntity.CreateDate,
+                            Id = newsEntity.Id,
+                            Lead = newsEntity.Lead,
+                            Title = newsEntity.Title,
+                            ValidPeriod = newsEntity.ValidPeriod
+                        });
+                    }
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            return x;
+
+        }
+
+        internal IEnumerable<NewsModel> GetNewsByCategoryId(int v)
+        {
+            IList<NewsModel> x = new List<NewsModel>();
+
+            try
+            {
+                foreach (var newsEntity in db.News)
+                {
+                    if(db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id && _.CategoryId == v).Count() == 1)
+                    {
+                        string name;
+                        IQueryable<int> ids;
+
+
+                        name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
+                        ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
+
+
+                        x.Add(new NewsModel()
+                        {
+                            Author = name,
+                            Content = newsEntity.Content,
+                            CategoryIds = ids,
+                            CreateDate = newsEntity.CreateDate,
+                            Id = newsEntity.Id,
+                            Lead = newsEntity.Lead,
+                            Title = newsEntity.Title,
+                            ValidPeriod = newsEntity.ValidPeriod
+                        });
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            return x;
         }
 
         public IEnumerable<NewsModel> GetValidNews()
         {
-            IEnumerable<News> result = new List<News>();
+            IList<NewsModel> x = new List<NewsModel>();
 
-            using (db = new NewsPortalDBContext())
-            {
-                result = db.News.Where(news => news.CreateDate.AddDays(news.ValidPeriod) > DateTime.Now)
-                    .ToList();
-            }
 
-            return result.Select(news => this.MapNewsEntityToDto(news));
+                foreach (var newsEntity in db.News.Where(news => news.CreateDate.AddDays(news.ValidPeriod) > DateTime.Now))
+                {
+                    string name;
+                    IQueryable<int> ids;
+
+
+                    name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
+                    ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
+
+
+                    x.Add(new NewsModel()
+                    {
+                        Author = name,
+                        Content = newsEntity.Content,
+                        CategoryIds = ids,
+                        CreateDate = newsEntity.CreateDate,
+                        Id = newsEntity.Id,
+                        Lead = newsEntity.Lead,
+                        Title = newsEntity.Title,
+                        ValidPeriod = newsEntity.ValidPeriod
+                    });
+                }
+            
+
+            return x;
+
+
         }
 
-        public async Task<NewsModel> GetNews(int id)
+        public NewsModel GetNews(int id)
         {
-            using (db = new NewsPortalDBContext())
+
+            NewsModel x = null;
+            try
             {
-                var news = db.News.Where(_ => _.Id == id).SingleOrDefault();
-                return this.MapNewsEntityToDto(news);
+
+
+                    foreach (var newsEntity in db.News.Where(_ => _.Id == id))
+                    {
+                        string name;
+                        IQueryable<int> ids;
+
+
+                        name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
+                        ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
+
+
+                        x = new NewsModel()
+                        {
+                            Author = name,
+                            Content = newsEntity.Content,
+                            CategoryIds = ids,
+                            CreateDate = newsEntity.CreateDate,
+                            Id = newsEntity.Id,
+                            Lead = newsEntity.Lead,
+                            Title = newsEntity.Title,
+                            ValidPeriod = newsEntity.ValidPeriod
+                        };
+                    }
+
+                
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            return x;
+
         }
 
         public async Task<NewsModel> CreateNews(NewsModel news)
         {
-            using (db = new NewsPortalDBContext())
-            {
+
                 int userId = db.Writers.Where(_ => _.UserName.Equals(news.Author)).Single().Id;
 
                 // TODO oda vissza mappelést lehetne szebben (pl. nem kézzel :))
@@ -73,19 +195,18 @@ namespace NewsPortal
 
                 foreach (var item in news.CategoryIds)
                 {
-                    await db.NewsToCategory.AddAsync(new NewsToCategory() { CategoryId = item, NewsId = newsEntity.Id });
+                    await db.NewsToCategory.AddAsync(new NewsToCategory() { CategoryId = item, NewsId = newsEntity.Id, Id = 0 });
                 }
 
                 await db.SaveChangesAsync();
 
                 return news;
-            }
+            
         }
 
         public async Task UpdateNews(int id, NewsModel news)
         {
-            using (db = new NewsPortalDBContext())
-            {
+
                 var dbNews = await db.News.FindAsync(id);
 
                 dbNews.Content = news.Content;
@@ -111,15 +232,14 @@ namespace NewsPortal
                 }
 
                 await db.SaveChangesAsync();
-            }
+            
         }
 
         public IEnumerable<NewsListItemModel> SearchNews(string searchTerm)
         {
-            using (db = new NewsPortalDBContext())
-            {
+
                 var result = db.News
-                    .Where(news => news.Title.Contains(searchTerm))
+                    .Where(news => news.Title.Contains(searchTerm) || news.Lead.Contains(searchTerm) || news.Content.Contains(searchTerm) )
                     .ToList()
                     .Select(news => new NewsListItemModel
                     {
@@ -131,13 +251,12 @@ namespace NewsPortal
                     });
 
                 return result;
-            }
+            
         }
 
         public async Task DeleteNews(int id)
         {
-            using (db = new NewsPortalDBContext())
-            {
+
                 var connectionsToDelete = db.NewsToCategory.Where(ntc => ntc.NewsId == id);
                 db.NewsToCategory.RemoveRange(connectionsToDelete);
 
@@ -146,7 +265,7 @@ namespace NewsPortal
                 db.News.Remove(newsToDelete);
 
                 await db.SaveChangesAsync();
-            }
+            
         }
         #endregion
 
@@ -155,21 +274,26 @@ namespace NewsPortal
         public IEnumerable<CategoryModel> GetAllCategories()
         {
             IEnumerable<Category> result = new List<Category>();
-
-            using (db = new NewsPortalDBContext())
+            try
             {
-                result = db.Category.ToList();
+
+                    result = db.Category.ToList();
+                
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
             }
 
             return result.Select(category => this.MapCategoryEntityToDto(category));
         }
 
-        public async Task<CategoryModel> GetCategory(int id)
+        public CategoryModel GetCategory(int id)
         {
-            using (db = new NewsPortalDBContext())
-            {
-                return this.MapCategoryEntityToDto(await db.Category.FindAsync(id));
-            }
+
+                return this.MapCategoryEntityToDto(db.Category.Find(id));
+            
         }
 
         public async Task<CategoryModel> CreateCategory(CategoryModel category)
@@ -192,7 +316,7 @@ namespace NewsPortal
             using (db = new NewsPortalDBContext())
             {
                 var dbCategory = await db.Category.FindAsync(id);
-                
+
                 dbCategory.Title = category.Title;
 
                 db.Category.Update(dbCategory);
@@ -202,8 +326,7 @@ namespace NewsPortal
 
         public async Task DeleteCategory(int id)
         {
-            using (db = new NewsPortalDBContext())
-            {
+
                 var newsIds = db.NewsToCategory.Where(_ => _.CategoryId == id).Select(_ => _.NewsId);
 
                 var newsToRemove = db.News
@@ -219,70 +342,28 @@ namespace NewsPortal
                 db.News.RemoveRange(newsToRemove);
 
                 await db.SaveChangesAsync();
-            }
+            
         }
 
         #endregion
 
-        public bool LoginCorrect(string userName, string passwordHash)
+        public Writers GetUser(string userName)
         {
-            using (db = new NewsPortalDBContext())
-            {
-                try
-                {
-                    db.Writers.Where(_ => _.UserName.Equals(userName) && _.PasswordHash.Equals(passwordHash)).Single();
 
-                    return true;
-                }
-                catch (Exception)
-                {
-
-                    return false;
-                }
-            }
-        }
-
-        public string GetSaltForUser(string userName)
-        {
-            using (db = new NewsPortalDBContext())
-            {
                 try
                 {
                     var user = db.Writers.Where(_ => _.UserName.Equals(userName)).Single();
 
-                    return user.Salt;
+                    return user;
                 }
                 catch (Exception e)
                 {
 
                     throw new NotFoundException();
                 }
-            }
+            
         }
 
-        private NewsModel MapNewsEntityToDto(News newsEntity)
-        {
-            string name;
-            IQueryable<int> ids;
-
-            using (db = new NewsPortalDBContext())
-            {
-                name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
-                ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
-
-            }
-            return new NewsModel
-            {
-                Author = name,
-                Content = newsEntity.Content,
-                CategoryIds = ids,
-                CreateDate = newsEntity.CreateDate,
-                Id = newsEntity.Id,
-                Lead = newsEntity.Lead,
-                Title = newsEntity.Title,
-                ValidPeriod = newsEntity.ValidPeriod
-            };
-        }
 
         private CategoryModel MapCategoryEntityToDto(Category categoryEntity)
         {

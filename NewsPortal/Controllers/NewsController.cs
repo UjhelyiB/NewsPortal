@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsPortal.Models.CSharpModels;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,15 +20,21 @@ namespace NewsPortal.Controllers
         }
 
         [HttpGet("[action]")]
+        public IEnumerable<NewsModel> GetNewsByCategory([FromQuery]string category)
+        {
+            return dal.GetNewsByCategoryId(Int32.Parse(category));
+        }
+
+        [HttpGet("[action]")]
         public IEnumerable<NewsModel> GetValidNews()
         {
             return dal.GetValidNews();
         }
 
-        [HttpGet("{id}")]
-        public async Task<NewsModel> GetNews([FromRoute]int id)
+        [HttpGet("[action]/{id}")]
+        public NewsModel GetNews([FromRoute]int id)
         {
-            return await dal.GetNews(id);
+            return dal.GetNews(id);
         }
 
         [HttpDelete("{id}")]
@@ -57,24 +64,9 @@ namespace NewsPortal.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<NewsListItemModel> search([FromQuery]string q)
+        public IEnumerable<NewsListItemModel> Search([FromQuery]string q)
         {
             return dal.SearchNews(q);
-        }
-
-        public class WeatherForecast
-        {
-            public string DateFormatted { get; set; }
-            public int TemperatureC { get; set; }
-            public string Summary { get; set; }
-
-            public int TemperatureF
-            {
-                get
-                {
-                    return 32 + (int)(TemperatureC / 0.5556);
-                }
-            }
         }
     }
 }

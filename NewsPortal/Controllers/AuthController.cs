@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using NewsPortal.Login;
 using NewsPortal.Models.CSharpModels;
+using NewsPortal.Models.DatabaseObjects;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -26,20 +27,20 @@ namespace NewsPortal.Controllers
                 return BadRequest("Invalid client request");
             }
 
-            string salt;
+            Writers userFromDB;
 
             try
             {
-                salt = dal.GetSaltForUser(user.UserName);
+                userFromDB = dal.GetUser(user.UserName);
             }
             catch (NotFoundException e)
             {
                 return Unauthorized();
             }
 
-            var saltedHashedClaimedPassword = sha256(user.Password+salt).ToUpper();
+            var saltedHashedClaimedPassword = sha256(user.Password+userFromDB.Salt).ToUpper();
 
-            if (dal.LoginCorrect(user.UserName, saltedHashedClaimedPassword))
+            if (userFromDB.PasswordHash.Equals(saltedHashedClaimedPassword))
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Startup.secretKey));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);

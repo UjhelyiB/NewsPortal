@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Category } from '../../services/types';
+import { CategoryModel } from '../../../../Models/TypescriptModels/CategoryModel';
 
 @Component({
     selector: 'app-edit-dialog',
@@ -9,7 +10,7 @@ import { Category } from '../../services/types';
 export class EditDialogComponent {
 
     constructor(public dialogRef: MatDialogRef<EditDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: Category) {
+        @Inject(MAT_DIALOG_DATA) public data: CategoryModel) {
     }
 
     onCancel(): void {
@@ -17,6 +18,6 @@ export class EditDialogComponent {
     }
 
     onOk() {
-        this.dialogRef.close(this.data.title);
+        this.dialogRef.close(this.data.Title);
     }
 }
