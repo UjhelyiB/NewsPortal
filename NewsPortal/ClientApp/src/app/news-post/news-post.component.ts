@@ -23,7 +23,6 @@ export class NewsPostComponent implements OnInit {
         this.activateRoute.params.subscribe(params => {
             if (params['id']) {
                 this.id = params['id'];
-                console.log(this.id);
                 this.getPost(this.id);
                 /*this.newsService.getMockPost(this.id).subscribe(post => {
                     this.post = post;*/
@@ -38,7 +37,6 @@ export class NewsPostComponent implements OnInit {
     getPost(id: number): void {
         this.newsService.getNewsById(id).subscribe(res => {
             this.post = res;
-            console.log(this.post);
         });
     }
 
@@ -48,7 +46,6 @@ export class NewsPostComponent implements OnInit {
 
     getCategoryForId(categoryId: number) {
         return this.categoryService.getCategories().subscribe(res => {
-            console.log(res);
             res.filter(_ => _.Id == categoryId)[0].Title;
         });
     }

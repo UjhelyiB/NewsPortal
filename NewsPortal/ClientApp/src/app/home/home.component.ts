@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
 
     getNews(): void {
         this.newsService.getNews().subscribe(res => {
-            console.log(res);
             this.news = res;
         });
         // this.newsService.getMockNews().subscribe(news => this.news = news);

@@ -36,12 +36,12 @@ export class CategoryEditorComponent implements OnInit {
 
     updateCategory(id: number, title: string): void {
         this.categoryService.updateCategory(id, { Id: id, Title: title }).subscribe(() => this.getCategories());
-        console.log('UPDATE CATEGORY: ' + id + ' TO: ' + title);
+        //console.log('UPDATE CATEGORY: ' + id + ' TO: ' + title);
     }
 
     deleteCategory(id: number): void {
         this.categoryService.deleteCategory(id).subscribe(() => this.getCategories());
-        console.log('DELETE CATEGORI: ' + id);
+        //console.log('DELETE CATEGORI: ' + id);
     }
 
     createCategory(): void {
@@ -51,11 +51,11 @@ export class CategoryEditorComponent implements OnInit {
     showEdit(id: number, title: string): void {
         const dialogRef = this.dialog.open(EditDialogComponent, {
             width: '350px',
-            data: { id: id, title: title }
+            data: { Id: id, Title: title }
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+            //console.log('The dialog was closed');
             if (result) {
                 this.updateCategory(id, result);
             }
@@ -66,11 +66,11 @@ export class CategoryEditorComponent implements OnInit {
     showDelete(id: number): void {
         const dialogRef = this.dialog.open(DeleteDialogComponent, {
             width: '350px',
-            data: { id: id }
+            data: { Id: id }
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+            //console.log('The dialog was closed');
             if (result) {
                 this.deleteCategory(id);
             }

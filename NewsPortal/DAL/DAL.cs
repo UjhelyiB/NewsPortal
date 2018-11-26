@@ -23,29 +23,29 @@ namespace NewsPortal
 
 
 
-                    foreach (var newsEntity in db.News)
+                foreach (var newsEntity in db.News)
+                {
+                    string name;
+                    IQueryable<int> ids;
+
+
+                    name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
+                    ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
+
+
+                    x.Add(new NewsModel()
                     {
-                        string name;
-                        IQueryable<int> ids;
+                        Author = name,
+                        Content = newsEntity.Content,
+                        CategoryIds = ids,
+                        CreateDate = newsEntity.CreateDate,
+                        Id = newsEntity.Id,
+                        Lead = newsEntity.Lead,
+                        Title = newsEntity.Title,
+                        ValidPeriod = newsEntity.ValidPeriod
+                    });
+                }
 
-
-                        name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
-                        ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
-
-
-                        x.Add(new NewsModel()
-                        {
-                            Author = name,
-                            Content = newsEntity.Content,
-                            CategoryIds = ids,
-                            CreateDate = newsEntity.CreateDate,
-                            Id = newsEntity.Id,
-                            Lead = newsEntity.Lead,
-                            Title = newsEntity.Title,
-                            ValidPeriod = newsEntity.ValidPeriod
-                        });
-                    }
-                
             }
             catch (Exception e)
             {
@@ -63,7 +63,7 @@ namespace NewsPortal
             {
                 foreach (var newsEntity in db.News)
                 {
-                    if(db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id && _.CategoryId == v).Count() == 1)
+                    if (db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id && _.CategoryId == v).Count() == 1)
                     {
                         string name;
                         IQueryable<int> ids;
@@ -100,29 +100,29 @@ namespace NewsPortal
             IList<NewsModel> x = new List<NewsModel>();
 
 
-                foreach (var newsEntity in db.News.Where(news => news.CreateDate.AddDays(news.ValidPeriod) > DateTime.Now))
+            foreach (var newsEntity in db.News.Where(news => news.CreateDate.AddDays(news.ValidPeriod) > DateTime.Now))
+            {
+                string name;
+                IQueryable<int> ids;
+
+
+                name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
+                ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
+
+
+                x.Add(new NewsModel()
                 {
-                    string name;
-                    IQueryable<int> ids;
+                    Author = name,
+                    Content = newsEntity.Content,
+                    CategoryIds = ids,
+                    CreateDate = newsEntity.CreateDate,
+                    Id = newsEntity.Id,
+                    Lead = newsEntity.Lead,
+                    Title = newsEntity.Title,
+                    ValidPeriod = newsEntity.ValidPeriod
+                });
+            }
 
-
-                    name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
-                    ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
-
-
-                    x.Add(new NewsModel()
-                    {
-                        Author = name,
-                        Content = newsEntity.Content,
-                        CategoryIds = ids,
-                        CreateDate = newsEntity.CreateDate,
-                        Id = newsEntity.Id,
-                        Lead = newsEntity.Lead,
-                        Title = newsEntity.Title,
-                        ValidPeriod = newsEntity.ValidPeriod
-                    });
-                }
-            
 
             return x;
 
@@ -137,30 +137,30 @@ namespace NewsPortal
             {
 
 
-                    foreach (var newsEntity in db.News.Where(_ => _.Id == id))
+                foreach (var newsEntity in db.News.Where(_ => _.Id == id))
+                {
+                    string name;
+                    IQueryable<int> ids;
+
+
+                    name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
+                    ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
+
+
+                    x = new NewsModel()
                     {
-                        string name;
-                        IQueryable<int> ids;
+                        Author = name,
+                        Content = newsEntity.Content,
+                        CategoryIds = ids,
+                        CreateDate = newsEntity.CreateDate,
+                        Id = newsEntity.Id,
+                        Lead = newsEntity.Lead,
+                        Title = newsEntity.Title,
+                        ValidPeriod = newsEntity.ValidPeriod
+                    };
+                }
 
 
-                        name = db.Writers.Where(_ => _.Id == newsEntity.Author).Single().UserName;
-                        ids = db.NewsToCategory.Where(_ => _.NewsId == newsEntity.Id).Select(_ => _.CategoryId);
-
-
-                        x = new NewsModel()
-                        {
-                            Author = name,
-                            Content = newsEntity.Content,
-                            CategoryIds = ids,
-                            CreateDate = newsEntity.CreateDate,
-                            Id = newsEntity.Id,
-                            Lead = newsEntity.Lead,
-                            Title = newsEntity.Title,
-                            ValidPeriod = newsEntity.ValidPeriod
-                        };
-                    }
-
-                
             }
             catch (Exception e)
             {
@@ -173,99 +173,99 @@ namespace NewsPortal
         public async Task<NewsModel> CreateNews(NewsModel news)
         {
 
-                int userId = db.Writers.Where(_ => _.UserName.Equals(news.Author)).Single().Id;
+            int userId = db.Writers.Where(_ => _.UserName.Equals(news.Author)).Single().Id;
 
-                // TODO oda vissza mappelést lehetne szebben (pl. nem kézzel :))
-                var newsEntity = new News
-                {
-                    Title = news.Title,
-                    Author = userId,
-                    Content = news.Content,
-                    CreateDate = DateTime.Now,
-                    Lead = news.Lead,
-                    ValidPeriod = news.ValidPeriod
-                };
+            // TODO oda vissza mappelést lehetne szebben (pl. nem kézzel :))
+            var newsEntity = new News
+            {
+                Title = news.Title,
+                Author = userId,
+                Content = news.Content,
+                CreateDate = DateTime.Now,
+                Lead = news.Lead,
+                ValidPeriod = news.ValidPeriod
+            };
 
 
 
-                await db.News.AddAsync(newsEntity);
-                await db.SaveChangesAsync();
+            await db.News.AddAsync(newsEntity);
+            await db.SaveChangesAsync();
 
-                news.Id = newsEntity.Id;
+            news.Id = newsEntity.Id;
 
-                foreach (var item in news.CategoryIds)
-                {
-                    await db.NewsToCategory.AddAsync(new NewsToCategory() { CategoryId = item, NewsId = newsEntity.Id, Id = 0 });
-                }
+            foreach (var item in news.CategoryIds)
+            {
+                await db.NewsToCategory.AddAsync(new NewsToCategory() { CategoryId = item, NewsId = newsEntity.Id, Id = 0 });
+            }
 
-                await db.SaveChangesAsync();
+            await db.SaveChangesAsync();
 
-                return news;
-            
+            return news;
+
         }
 
         public async Task UpdateNews(int id, NewsModel news)
         {
 
-                var dbNews = await db.News.FindAsync(id);
+            var dbNews = await db.News.FindAsync(id);
 
-                dbNews.Content = news.Content;
-                dbNews.Lead = news.Lead;
-                dbNews.Title = news.Title;
-                dbNews.ValidPeriod = news.ValidPeriod;
-                db.News.Update(dbNews);
+            dbNews.Content = news.Content;
+            dbNews.Lead = news.Lead;
+            dbNews.Title = news.Title;
+            dbNews.ValidPeriod = news.ValidPeriod;
+            db.News.Update(dbNews);
 
-                var existingConnections = db.NewsToCategory
-                    .Where(ntc => ntc.NewsId == id);
+            var existingConnections = db.NewsToCategory
+                .Where(ntc => ntc.NewsId == id);
 
-                var connectionsToDelete = existingConnections.Where(ntc => !news.CategoryIds.Contains(ntc.CategoryId));
-                db.NewsToCategory.RemoveRange(connectionsToDelete);
+            var connectionsToDelete = existingConnections.Where(ntc => !news.CategoryIds.Contains(ntc.CategoryId));
+            db.NewsToCategory.RemoveRange(connectionsToDelete);
 
-                var categoryIdsToConnect = news.CategoryIds.Where(cid => !existingConnections.Any(ntc => ntc.CategoryId == cid));
-                foreach (var categoryId in categoryIdsToConnect)
+            var categoryIdsToConnect = news.CategoryIds.Where(cid => !existingConnections.Any(ntc => ntc.CategoryId == cid));
+            foreach (var categoryId in categoryIdsToConnect)
+            {
+                await db.NewsToCategory.AddAsync(new NewsToCategory
                 {
-                    await db.NewsToCategory.AddAsync(new NewsToCategory
-                    {
-                        CategoryId = categoryId,
-                        NewsId = id
-                    });
-                }
+                    CategoryId = categoryId,
+                    NewsId = id
+                });
+            }
 
-                await db.SaveChangesAsync();
-            
+            await db.SaveChangesAsync();
+
         }
 
         public IEnumerable<NewsListItemModel> SearchNews(string searchTerm)
         {
 
-                var result = db.News
-                    .Where(news => news.Title.Contains(searchTerm) || news.Lead.Contains(searchTerm) || news.Content.Contains(searchTerm) )
-                    .ToList()
-                    .Select(news => new NewsListItemModel
-                    {
-                        Id = news.Id,
-                        Title = news.Title,
-                        Lead = news.Lead,
-                        Author = news.Author,
-                        CreateDate = news.CreateDate
-                    });
+            var result = db.News
+                .Where(news => news.Title.Contains(searchTerm) || news.Lead.Contains(searchTerm) || news.Content.Contains(searchTerm))
+                .ToList()
+                .Select(news => new NewsListItemModel
+                {
+                    Id = news.Id,
+                    Title = news.Title,
+                    Lead = news.Lead,
+                    Author = news.Author,
+                    CreateDate = news.CreateDate
+                });
 
-                return result;
-            
+            return result;
+
         }
 
         public async Task DeleteNews(int id)
         {
 
-                var connectionsToDelete = db.NewsToCategory.Where(ntc => ntc.NewsId == id);
-                db.NewsToCategory.RemoveRange(connectionsToDelete);
+            var connectionsToDelete = db.NewsToCategory.Where(ntc => ntc.NewsId == id);
+            db.NewsToCategory.RemoveRange(connectionsToDelete);
 
-                var newsToDelete = new News { Id = id };
-                db.News.Attach(newsToDelete);
-                db.News.Remove(newsToDelete);
+            var newsToDelete = new News { Id = id };
+            db.News.Attach(newsToDelete);
+            db.News.Remove(newsToDelete);
 
-                await db.SaveChangesAsync();
-            
+            await db.SaveChangesAsync();
+
         }
         #endregion
 
@@ -277,8 +277,8 @@ namespace NewsPortal
             try
             {
 
-                    result = db.Category.ToList();
-                
+                result = db.Category.ToList();
+
 
             }
             catch (Exception e)
@@ -292,8 +292,8 @@ namespace NewsPortal
         public CategoryModel GetCategory(int id)
         {
 
-                return this.MapCategoryEntityToDto(db.Category.Find(id));
-            
+            return this.MapCategoryEntityToDto(db.Category.Find(id));
+
         }
 
         public async Task<CategoryModel> CreateCategory(CategoryModel category)
@@ -327,22 +327,23 @@ namespace NewsPortal
         public async Task DeleteCategory(int id)
         {
 
-                var newsIds = db.NewsToCategory.Where(_ => _.CategoryId == id).Select(_ => _.NewsId);
+            var newsIds = db.NewsToCategory.Where(_ => _.CategoryId == id).Select(_ => _.NewsId);
 
-                var newsToRemove = db.News
-                    .Where(news => newsIds.Contains(news.Id))
-                    .ToList();
+            var newsToRemove = db.News
+                .Where(news => newsIds.Contains(news.Id))
+                .ToList();
 
 
 
-                var categoryToRemove = await db.Category
-                    .SingleOrDefaultAsync(c => c.Id == id);
+            var categoryToRemove = await db.Category
+                .SingleOrDefaultAsync(c => c.Id == id);
 
-                db.Category.Remove(categoryToRemove);
-                db.News.RemoveRange(newsToRemove);
+            db.News.RemoveRange(newsToRemove);
+            db.Category.Remove(categoryToRemove);
 
-                await db.SaveChangesAsync();
-            
+
+            await db.SaveChangesAsync();
+
         }
 
         #endregion
@@ -350,18 +351,18 @@ namespace NewsPortal
         public Writers GetUser(string userName)
         {
 
-                try
-                {
-                    var user = db.Writers.Where(_ => _.UserName.Equals(userName)).Single();
+            try
+            {
+                var user = db.Writers.Where(_ => _.UserName.Equals(userName)).Single();
 
-                    return user;
-                }
-                catch (Exception e)
-                {
+                return user;
+            }
+            catch (Exception e)
+            {
 
-                    throw new NotFoundException();
-                }
-            
+                throw new NotFoundException();
+            }
+
         }
 
 

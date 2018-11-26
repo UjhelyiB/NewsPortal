@@ -23,12 +23,11 @@
             <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
             <td mat-cell *matCellDef="let element" class="btn-cell">
                 <div class="button-row">
-                    <button mat-flat-button color="primary" (click)="showEdit(element.id, element.title)">Szerkesztés</button>
-                    <button mat-flat-button color="warn" (click)="showDelete(element.id)">Törlés</button>
+                    <button mat-flat-button color="primary" (click)="showEdit(element.Id, element.Title)">Szerkesztés</button>
+                    <button mat-flat-button color="warn" (click)="showDelete(element.Id)">Törlés</button>
                 </div>
             </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

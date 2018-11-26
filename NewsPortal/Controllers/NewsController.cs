@@ -38,7 +38,6 @@ namespace NewsPortal.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[Authorize]
         public async Task<IActionResult> DeleteNews([FromRoute]int id)
         {
             await dal.DeleteNews(id);
@@ -46,7 +45,6 @@ namespace NewsPortal.Controllers
         }
 
         [HttpPost("")]
-        //[Authorize]
         public async Task<IActionResult> CreateNews([FromBody] JObject data)
         {
             NewsModel model = data["model"].ToObject<NewsModel>();
@@ -56,7 +54,6 @@ namespace NewsPortal.Controllers
         }
 
         [HttpPut("{id}")]
-        //[Authorize]
         public async Task<IActionResult> UpdateNews([FromRoute]int id, [FromBody]NewsModel model)
         {
             await dal.UpdateNews(id, model);

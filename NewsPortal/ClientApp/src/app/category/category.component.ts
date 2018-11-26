@@ -21,7 +21,7 @@ export class CategoryComponent implements OnInit {
 
     ngOnInit() {
         this.getCategories();
-        console.log(this.categories);
+        //console.log(this.categories);
 
         this.activateRoute.params.subscribe(params => {
             if (params['id']) {
