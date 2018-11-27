@@ -22,6 +22,7 @@ export class CategoryEditorComponent implements OnInit {
             Id: 0,
             Title: '',
         }
+
     }
 
     ngOnInit() {

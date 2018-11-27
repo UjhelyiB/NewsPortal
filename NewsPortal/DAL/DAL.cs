@@ -259,6 +259,7 @@ namespace NewsPortal
 
             var connectionsToDelete = db.NewsToCategory.Where(ntc => ntc.NewsId == id);
             db.NewsToCategory.RemoveRange(connectionsToDelete);
+            await db.SaveChangesAsync();
 
             var newsToDelete = new News { Id = id };
             db.News.Attach(newsToDelete);
@@ -327,18 +328,14 @@ namespace NewsPortal
         public async Task DeleteCategory(int id)
         {
 
-            var newsIds = db.NewsToCategory.Where(_ => _.CategoryId == id).Select(_ => _.NewsId);
-
-            var newsToRemove = db.News
-                .Where(news => newsIds.Contains(news.Id))
-                .ToList();
-
-
-
             var categoryToRemove = await db.Category
                 .SingleOrDefaultAsync(c => c.Id == id);
 
-            db.News.RemoveRange(newsToRemove);
+
+            db.NewsToCategory.RemoveRange(db.NewsToCategory.Where(_ => _.CategoryId == id));
+
+            await db.SaveChangesAsync();
+
             db.Category.Remove(categoryToRemove);
 
 

@@ -23,7 +23,7 @@ export class NewsPostComponent implements OnInit {
     ngOnInit() {
         this.categoryService.getCategories().subscribe(res => {
             this.categories = res;
-        };
+        });
 
         this.activateRoute.params.subscribe(params => {
             if (params['id']) {

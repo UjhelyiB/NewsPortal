@@ -6,6 +6,11 @@
         <div class="author">
             <i class="material-icons">create</i><span>&nbsp;{{post.Author}}</span>
         </div>
+        <div style="display: inline-block">
+            <button mat-flat-button color="warn" (click)="deleteNews(post.Id)">
+                <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+            </button>
+        </div>
     </div>
     <h3 class="title" (click)="goToPost(post.Id)" style="cursor:pointer">{{post.Title}}</h3>
     <div class="intro">{{post.Lead}}</div>

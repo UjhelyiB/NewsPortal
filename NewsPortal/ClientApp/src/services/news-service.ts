@@ -66,6 +66,10 @@ export class NewsService {
         this.mycreatedpost = post;
     }
 
+    deleteNews(id: number): Observable<any> {
+        return this.http.delete(`${this.baseUrl}api/news/${id}`);
+    }
+
     getMyMockedPost() {
         return this.postmodel;
     }
