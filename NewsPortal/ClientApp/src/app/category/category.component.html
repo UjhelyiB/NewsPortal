@@ -18,7 +18,7 @@
                 <mat-spinner></mat-spinner>
             </div>
             <div *ngFor='let post of news'>
-                <app-news-section [post]="post"></app-news-section>
+                <app-news-section [post]="post" (sideNavbarNeedsToBeReduced)="onSideNavbarNeedsToBeReduced($event)"></app-news-section>
             </div>
         </div>
     </div>

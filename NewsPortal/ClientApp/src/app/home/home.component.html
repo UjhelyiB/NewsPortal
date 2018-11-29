@@ -19,7 +19,7 @@
     <div class="col-md-8">
         <div class="other-news" style="width: 100%;">
             <div *ngFor='let post of news'>
-                <app-news-section [post]="post"></app-news-section>
+                <app-news-section [post]="post" (sideNavbarNeedsToBeReduced)="onSideNavbarNeedsToBeReduced($event)"></app-news-section>
             </div>
         </div>
     </div>

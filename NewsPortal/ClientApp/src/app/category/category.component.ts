@@ -60,4 +60,12 @@ export class CategoryComponent implements OnInit {
         return "";
         
     }
+
+    sideNavbarNeedsToBeReduced = false;
+
+    onSideNavbarNeedsToBeReduced(isClosed: boolean) {
+        this.newsService.getNews().subscribe(res => {
+            this.loadCategory(this.selected);
+        });
+    }
 }

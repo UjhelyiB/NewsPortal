@@ -38,4 +38,12 @@ export class HomeComponent implements OnInit {
     getUserName() {
         return this.auth.getUserName();
     }
+
+    sideNavbarNeedsToBeReduced = false;
+
+    onSideNavbarNeedsToBeReduced(isClosed: boolean) {
+        this.newsService.getNews().subscribe(res => {
+            this.news = res;
+        });
+    }
 }

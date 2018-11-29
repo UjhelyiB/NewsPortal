@@ -6,7 +6,7 @@
         <div class="author">
             <i class="material-icons">create</i><span>&nbsp;{{post.Author}}</span>
         </div>
-        <div style="display: inline-block">
+        <div style="display: inline-block; margin-left:50%" *ngIf="isLoggedIn()">
             <button mat-flat-button color="warn" (click)="deleteNews(post.Id)">
                 <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
             </button>

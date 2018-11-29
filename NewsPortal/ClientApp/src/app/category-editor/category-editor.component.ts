@@ -29,6 +29,7 @@ export class CategoryEditorComponent implements OnInit {
         this.getCategories();
     }
 
+
     getCategories(): void {
         this.categoryService.getCategories().subscribe(result => {
             this.categories = result;

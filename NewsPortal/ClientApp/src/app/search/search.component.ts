@@ -56,4 +56,10 @@ export class SearchComponent implements OnInit {
             result.forEach(_ => this.news.push(_));
         });
     }
+
+    onSideNavbarNeedsToBeReduced(isClosed: boolean) {
+        this.newsService.getNews().subscribe(res => {
+            this.searchNews();
+        });
+    }
 }
